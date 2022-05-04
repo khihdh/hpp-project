@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 public class Utils {
 
@@ -58,6 +59,10 @@ public class Utils {
 		return "";
 	}
 	
+	public void write(String top3) {
+				//On écrit les résultats
+				System.out.println(top3);
+	}
 	
 	
 }
