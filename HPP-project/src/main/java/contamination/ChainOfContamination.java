@@ -31,14 +31,26 @@ public class ChainOfContamination {
 	public void updateScore(Person personToAdd) {
 		int length = ListPerson.size();
 		Person pers;
-		for (int i=Index; i<length-1; i++) {
+		for (int i= Index; i<length-1; i++) {
 			pers = ListPerson.get(i);
 			score = Utils.calculateScore(pers.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
 		}
 	}
 	
-	public void updateIndex() {
-
+	public void updateIndex(Person personToAdd) {
+		int length = ListPerson.size();
+		int staticIndex = Index;
+		for (int i = staticIndex ; i<length; i++) {
+			while((ListPerson.get(i).getDiagnosed_ts()-personToAdd.getDiagnosed_ts()) > 1209600 ) {
+				Index = i;
+			}
+		}
+	}
+	
+	public void addPerson(Person personToAdd) {
+		ListPerson.add(personToAdd);
+		updateScore(personToAdd);
+		updateIndex(personToAdd);
 	}
 	
 	// For the moment we don't delete person but just change his ParticipateToChain boolean
