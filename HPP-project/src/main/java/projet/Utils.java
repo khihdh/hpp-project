@@ -2,6 +2,7 @@ package projet;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,30 +32,74 @@ public class Utils {
 		return res;
 	}
 	
-	public static String getNewEntry(int idToRead,int idFR,int idIT,int idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+	public static String getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
 		try  
 		{  
 			File france=new File(franceDataPath);
 			File italy=new File(italyDataPath);
 			File spain=new File(spainDataPath);
 			
-			FileReader fr=new FileReader(france);   //reads the file  
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
-			StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters  
-			String line;  
-			while((line=br.readLine())!=null)  
-			{  
-				sb.append(line);      //appends line to string buffer  
-				sb.append("\n");     //line feed   
-			}  
+			Person personToReturn;
 			
-			fr.close();    //closes the stream and release the resources  
-			System.out.println("Contents of File: ");  
-			System.out.println(sb.toString());   //returns a string that textually represents the object  
+			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
+			if(idToRead == 0) {
+				
+				Person pf,pi,ps;
+				
+				FileReader fr=new FileReader(france);   //reads the file  
+				BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
+				String line;  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+					//france countryid = 0
+					pf = new Person(0,line);
+					idFR.setValue(pf.getPerson_id());
+				}  
+				fr.close();    //closes the stream and release the resources*
+				
+				
+				fr=new FileReader(italy);   //reads the file  
+				br=new BufferedReader(fr);  //creates a buffering character input stream  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+					//italy countryid = 1
+					pi = new Person(1,line);
+					idIT.setValue(pi.getPerson_id());
+				}  
+				fr.close();    //closes the stream and release the resources
+				
+				fr=new FileReader(spain);   //reads the file  
+				br=new BufferedReader(fr);  //creates a buffering character input stream  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+					//spain countryid = 2
+					ps = new Person(2,line);
+					idSP.setValue(ps.getPerson_id());
+				}  
+				fr.close();    //closes the stream and release the resources
+				
+				if(idToRead == pf.getPerson_id()) {
+					idFR.setKey(idFR.getKey() + 1);
+					personToReturn = pf;
+				}else if(idToRead == pi.getPerson_id()) {
+					idIT.setKey(idIT.getKey() + 1);
+					personToReturn = pi;
+				}else if(idToRead == pi.getPerson_id()) {
+					idSP.setKey(idSP.getKey() + 1);
+					personToReturn = ps;
+				}
+			}else {
+				
+			}
+			
+			   
 		}  
-		catch(IOException e){  
+		catch(IOException e ){  
 			e.printStackTrace();  
-		}  
+		}
 		
 		return "";
 	}
@@ -63,6 +108,5 @@ public class Utils {
 				//On écrit les résultats
 				System.out.println(top3);
 	}
-	
 	
 }
