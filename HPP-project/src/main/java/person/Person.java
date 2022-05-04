@@ -18,7 +18,7 @@ public class Person {
     	
     	String[] split = null;
     	
-    	split = initial.replaceAll(" ", "").split(",");
+    	split = initial.replaceAll("\"","").replaceAll(" ", "").split(",");
     	System.out.println(split[0]);
     	System.out.println(split[4]);
     	System.out.println(split[5]);

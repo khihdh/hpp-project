@@ -87,6 +87,13 @@ public class Utils {
 					idSP.setValue(ps.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
+				System.out.println("");
+				System.out.println("");
+				System.out.println("");
+				System.out.println(" id to read :" + idToRead);
+				System.out.println(pf.getPerson_id());
+				System.out.println(pi.getPerson_id());
+				System.out.println(ps.getPerson_id());
 				
 				if(idToRead == pf.getPerson_id()) {
 					idFR.setKey(idFR.getKey() + 1);
@@ -94,7 +101,7 @@ public class Utils {
 				}else if(idToRead == pi.getPerson_id()) {
 					idIT.setKey(idIT.getKey() + 1);
 					personToReturn = pi;
-				}else if(idToRead == pi.getPerson_id()) {
+				}else if(idToRead == ps.getPerson_id()) {
 					idSP.setKey(idSP.getKey() + 1);
 					personToReturn = ps;
 				}
