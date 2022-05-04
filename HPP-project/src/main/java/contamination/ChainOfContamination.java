@@ -1,4 +1,4 @@
-package projet;
+package contamination;
 
 import java.util.ArrayList;
 
