@@ -14,7 +14,7 @@ public class Main {
 	public static void main() {
 		String path = "";
 		//Instantiate every components
-				ListChainOfContamination inQueue = new ListChainOfContamination();
+				/*ListChainOfContamination inQueue = new ListChainOfContamination();
 				int idToRead =0;
 				Pair<Integer, Integer> idFR = new Pair<>(0,0) ;
 				Pair<Integer, Integer> idIT = new Pair<>(0,0) ;
@@ -47,7 +47,7 @@ public class Main {
 				//ThreadUtils.shutdownAndAwaitTermination(service);
 
 				//Print execution time
-				System.out.println(System.nanoTime()-startTime);
+				System.out.println(System.nanoTime()-startTime);*/
 
 	}
 

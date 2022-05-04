@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.Arrays;
 
 import person.Person;
 
@@ -103,6 +104,12 @@ public class Utils {
 		}
 		
 		return "";
+	}
+	
+	
+	public static int returnId(String line) {
+		String[] listeDeux = (line.split(",", 2));
+		return Integer.parseInt(listeDeux[0]);
 	}
 	
 	public void write(String top3) {
