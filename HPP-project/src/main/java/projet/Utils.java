@@ -4,7 +4,6 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 public class Utils {
 
@@ -18,7 +17,7 @@ public class Utils {
 		
 		//1 day = 86400
 		//7 days = 604 800
-		// 14 days = 1 209 600
+		//14 days = 1 209 600
 		
 		int res = current_date - contamination_date;
 		if(res < 604800) 
@@ -60,7 +59,7 @@ public class Utils {
 	}
 	
 	public void write(String top3) {
-				//On écrit les résultats
+				//On ï¿½crit les rï¿½sultats
 				System.out.println(top3);
 	}
 	
