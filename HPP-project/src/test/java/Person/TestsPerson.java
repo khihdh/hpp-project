@@ -1,5 +1,6 @@
 package Person;
 
+
 import static org.junit.Assert.assertEquals;
 
 import java.sql.Timestamp;
@@ -7,6 +8,7 @@ import java.sql.Timestamp;
 import org.junit.Test;
 
 import person.Person;
+import projet.Utils;
 
 public class TestsPerson {
 	
@@ -17,7 +19,7 @@ public class TestsPerson {
         Person person = new Person((short)0, exemple1);
 
         assertEquals(4, person.getPerson_id());
-        assertEquals(new Timestamp((long)(1582161158.5235808*1000.0)), person.getDiagnosed_ts());
+        assertEquals((int)(1582161158.5235808*1000.0), person.getDiagnosed_ts());
         assertEquals(-1, person.getContaminated_by());
         assertEquals(0, person.getCountry_id());
 
@@ -25,8 +27,17 @@ public class TestsPerson {
         Person person2 = new Person((short)1,exemple2);
 
         assertEquals(11, person2.getPerson_id());
-        assertEquals(new Timestamp((long)(1577483620.7382095*1000.0)), person2.getDiagnosed_ts());
+        assertEquals((int)(1577483620.7382095*1000.0), person2.getDiagnosed_ts());
         assertEquals(7, person2.getContaminated_by());
         assertEquals(1, person2.getCountry_id());
     }
+	
+	@Test
+	public void testReturnId() {
+		String exemple1 = "4, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 1582161158.5235808, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
+        System.out.println(exemple1);
+        System.out.println("::::::");
+        System.out.println(Utils.returnId(exemple1));
+        assertEquals(4, Utils.returnId(exemple1));
+	}
 }

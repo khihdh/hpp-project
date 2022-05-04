@@ -186,11 +186,11 @@ public class Utils {
 		return "";
 	}
 	
+	
 	public static int returnId(String line) {
 		String[] listeDeux = (line.split(",", 2));
 		return Integer.parseInt(listeDeux[0]);
 	}
-
 	
 	public void write(String top3) {
 				//On �crit les r�sultats
