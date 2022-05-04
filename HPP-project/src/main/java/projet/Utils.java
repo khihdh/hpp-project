@@ -2,6 +2,7 @@ package projet;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 
@@ -30,34 +31,50 @@ public class Utils {
 		return res;
 	}
 	
-	public static String getNewEntry(int idToRead,int idFR,int idIT,int idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+	public static String getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
 		try  
 		{  
 			File france=new File(franceDataPath);
 			File italy=new File(italyDataPath);
 			File spain=new File(spainDataPath);
 			
-			FileReader fr=new FileReader(france);   //reads the file  
-			BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
-			StringBuffer sb=new StringBuffer();    //constructs a string buffer with no characters  
-			String line;  
-			while((line=br.readLine())!=null)  
-			{  
-				sb.append(line);      //appends line to string buffer  
-				sb.append("\n");     //line feed   
-			}  
+			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
+			if(idToRead == 0) {
+				FileReader fr=new FileReader(france);   //reads the file  
+				BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
+				String line;  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+				}  
+				fr.close();    //closes the stream and release the resources*
+				
+				
+				fr=new FileReader(italy);   //reads the file  
+				br=new BufferedReader(fr);  //creates a buffering character input stream  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+				}  
+				fr.close();    //closes the stream and release the resources
+				
+				fr=new FileReader(spain);   //reads the file  
+				br=new BufferedReader(fr);  //creates a buffering character input stream  
+				if((line=br.readLine())!=null)  
+				{  
+					System.out.println(line);
+				}  
+				fr.close();    //closes the stream and release the resources
+			}
 			
-			fr.close();    //closes the stream and release the resources  
-			System.out.println("Contents of File: ");  
-			System.out.println(sb.toString());   //returns a string that textually represents the object  
+			   
 		}  
-		catch(IOException e){  
+		catch(IOException e ){  
 			e.printStackTrace();  
-		}  
+		}
 		
 		return "";
 	}
-	
 	
 	
 }
