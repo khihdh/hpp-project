@@ -9,17 +9,23 @@ public class Person {
     //private final String person;
     private final int diagnosed_ts;
     private final int contaminated_by;
+    //france 0 italie 1 espagne 2
     private final short country_id;
     private final boolean ParticipateToChain;
     //person stay in a chain even if his diagnosed_ts is too hold
     
-    
-
-	public Person(short country,String[] initial) {
-    	person_id = Integer.parseInt(initial[0]);
-    	diagnosed_ts = (int)(Double.parseDouble(initial[4])*1000.0);
-        //diagnosed_ts = new Timestamp((long)(Double.parseDouble(initial[4])*1000.0));
-        contaminated_by = initial[5].equals("unknown") ? -1 : Integer.parseInt(initial[5]);
+    public Person(short country,String initial) {
+    	
+    	String[] split = null;
+    	
+    	split = initial.replaceAll(" ", "").split(",");
+    	System.out.println(split[0]);
+    	System.out.println(split[4]);
+    	System.out.println(split[5]);
+    	person_id = Integer.parseInt(split[0]);
+    	diagnosed_ts = (int)(Double.parseDouble(split[4])*1000.0);
+    	//diagnosed_ts = new Timestamp((long)(Double.parseDouble(split[4])*1000.0));
+        contaminated_by = split[5].equals("unknown") ? -1 : Integer.parseInt(split[5]);
         country_id = country;
         ParticipateToChain = true;
     }

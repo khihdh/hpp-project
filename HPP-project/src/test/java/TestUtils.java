@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.junit.jupiter.api.Test;
 
 import projet.Utils;
+import projet.Pair;
 
 class TestUtils {
 
@@ -16,13 +17,15 @@ class TestUtils {
 	
 	@Test
 	void testGetNewEntry() {
-		String pathFR = "C:\\Users\\Utilisateur\\Desktop\\FISE2\\S8\\HPP\\projet\\hpp-project-group-4\\France.csv";
-		String pathIT = "C:\\Users\\Utilisateur\\Desktop\\FISE2\\S8\\HPP\\projet\\hpp-project-group-4\\Italy.csv";
-		String pathSP = "C:\\Users\\Utilisateur\\Desktop\\FISE2\\S8\\HPP\\projet\\hpp-project-group-4\\Spain.csv";
 		
-		int idFR = 0;
-		int idIT = 0;
-		int idSP = 0;
+		String currentPath = System.getProperty("user.dir");
+		String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
+		String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
+		String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+		
+		Pair<Integer, Integer> idFR = new Pair<>(0, 0);
+		Pair<Integer, Integer> idIT = new Pair<>(0, 0);
+		Pair<Integer, Integer> idSP = new Pair<>(0, 0);
 		
 		int idToRead = 0;
 		
