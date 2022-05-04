@@ -5,7 +5,8 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.PrintWriter;
+
+import person.Person;
 
 public class Utils {
 
@@ -19,7 +20,7 @@ public class Utils {
 		
 		//1 day = 86400
 		//7 days = 604 800
-		// 14 days = 1 209 600
+		//14 days = 1 209 600
 		
 		int res = current_date - contamination_date;
 		if(res < 604800) 
@@ -44,7 +45,7 @@ public class Utils {
 			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
 			if(idToRead == 0) {
 				
-				Person pf,pi,ps;
+				Person pf = null,pi = null,ps = null;
 				
 				FileReader fr=new FileReader(france);   //reads the file  
 				BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
@@ -53,7 +54,7 @@ public class Utils {
 				{  
 					System.out.println(line);
 					//france countryid = 0
-					pf = new Person(0,line);
+					pf = new Person((short)0,line);
 					idFR.setValue(pf.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources*
@@ -65,7 +66,7 @@ public class Utils {
 				{  
 					System.out.println(line);
 					//italy countryid = 1
-					pi = new Person(1,line);
+					pi = new Person((short)1,line);
 					idIT.setValue(pi.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
@@ -76,7 +77,7 @@ public class Utils {
 				{  
 					System.out.println(line);
 					//spain countryid = 2
-					ps = new Person(2,line);
+					ps = new Person((short)2,line);
 					idSP.setValue(ps.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
@@ -105,7 +106,7 @@ public class Utils {
 	}
 	
 	public void write(String top3) {
-				//On écrit les résultats
+				//On ï¿½crit les rï¿½sultats
 				System.out.println(top3);
 	}
 	
