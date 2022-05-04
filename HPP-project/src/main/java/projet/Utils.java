@@ -38,14 +38,22 @@ public class Utils {
 			File italy=new File(italyDataPath);
 			File spain=new File(spainDataPath);
 			
+			Person personToReturn;
+			
 			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
 			if(idToRead == 0) {
+				
+				Person pf,pi,ps;
+				
 				FileReader fr=new FileReader(france);   //reads the file  
 				BufferedReader br=new BufferedReader(fr);  //creates a buffering character input stream  
 				String line;  
 				if((line=br.readLine())!=null)  
 				{  
 					System.out.println(line);
+					//france countryid = 0
+					pf = new Person(0,line);
+					idFR.setValue(pf.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources*
 				
@@ -55,6 +63,9 @@ public class Utils {
 				if((line=br.readLine())!=null)  
 				{  
 					System.out.println(line);
+					//italy countryid = 1
+					pi = new Person(1,line);
+					idIT.setValue(pi.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
 				
@@ -63,8 +74,24 @@ public class Utils {
 				if((line=br.readLine())!=null)  
 				{  
 					System.out.println(line);
+					//spain countryid = 2
+					ps = new Person(2,line);
+					idSP.setValue(ps.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
+				
+				if(idToRead == pf.getPerson_id()) {
+					idFR.setKey(idFR.getKey() + 1);
+					personToReturn = pf;
+				}else if(idToRead == pi.getPerson_id()) {
+					idIT.setKey(idIT.getKey() + 1);
+					personToReturn = pi;
+				}else if(idToRead == pi.getPerson_id()) {
+					idSP.setKey(idSP.getKey() + 1);
+					personToReturn = ps;
+				}
+			}else {
+				
 			}
 			
 			   

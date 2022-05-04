@@ -17,8 +17,6 @@ class TestUtils {
 	
 	@Test
 	void testGetNewEntry() {
-		System.out.println(System.getProperty("user.dir") );
-		System.out.println("");
 		
 		String currentPath = System.getProperty("user.dir");
 		String pathFR = currentPath + "\\src\\main\\resources\\France.csv";

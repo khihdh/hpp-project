@@ -2,8 +2,8 @@ package projet;
 
 public class Pair<T1, T2> {
 
-	 private final T1 key;
-	    private final T2 value;
+	 private T1 key;
+	    private T2 value;
 
 	    public Pair(T1 key, T2 value) {
 	        this.key = key;
@@ -16,5 +16,13 @@ public class Pair<T1, T2> {
 
 	    public T2 getValue() {
 	        return this.value;
+	    }
+	    
+	    public void setKey(T1 key) {
+	    	this.key = key ;
+	    }
+	    
+	    public void setValue(T2 value) {
+	    	this.value = value ;
 	    }
 }
