@@ -25,4 +25,5 @@ public class Pair<T1, T2> {
 	    public void setValue(T2 value) {
 	    	this.value = value ;
 	    }
+	    
 }
