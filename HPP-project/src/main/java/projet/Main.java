@@ -1,5 +1,6 @@
 package projet;
 
+import java.io.File;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -19,9 +20,15 @@ public class Main {
 				Pair<Integer, Integer> idIT = new Pair<>(0,0) ;
 				Pair<Integer, Integer> idSP = new Pair<>(0,0) ;
 				String currentPath = System.getProperty("user.dir");
-				String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
-				String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
-				String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+				//String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
+				//String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
+				//String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+				String pathFR = currentPath + "\\src\\main\\resources\\France5000.csv";
+				String pathIT = currentPath + "\\src\\main\\resources\\Italy5000.csv";
+				String pathSP = currentPath + "\\src\\main\\resources\\Spain5000.csv";
+				File france=new File(pathFR);
+				File italy=new File(pathIT);
+				File spain=new File(pathSP);
 				
 				Person personne = null;
 				Integer fin = 0;
@@ -30,13 +37,15 @@ public class Main {
 				//Start timer
 				long startTime = System.nanoTime();
 				
-				//boucle à faire après
+				System.out.println("Starting reading ...");
+				
+				//boucle Ã  faire aprÃ¨s
 				while (fin.equals(0)) {
-				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
+				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, france, italy, spain);
 				idToRead++;
 				personne = (Person) pair.getKey();
                 fin = (Integer) pair.getValue();
-				System.out.println(personne);
+				//System.out.println(personne);
 				}
 				
 
@@ -54,7 +63,7 @@ public class Main {
 				//ThreadUtils.shutdownAndAwaitTermination(service);
 
 				//Print execution time
-				System.out.println(System.nanoTime()-startTime);
+				System.out.println("Reading dataSet and creating persons : " +(float)(System.nanoTime()-startTime)/1000000000 + "seconds");
 
 	}
 

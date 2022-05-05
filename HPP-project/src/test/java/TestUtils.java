@@ -1,6 +1,8 @@
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import java.io.File;
+
 import org.junit.jupiter.api.Test;
 
 import person.Person;
@@ -29,6 +31,10 @@ class TestUtils {
 		String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
 		String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
 		
+		File france=new File(pathFR);
+		File italy=new File(pathIT);
+		File spain=new File(pathSP);
+		
 		Pair<Integer, Integer> idFR = new Pair<>(0, 0);
 		Pair<Integer, Integer> idIT = new Pair<>(0, 0);
 		Pair<Integer, Integer> idSP = new Pair<>(0, 0);
@@ -38,7 +44,7 @@ class TestUtils {
 		Pair<Person, Integer> test;
 		
 		for(int i =0; i<19; i++) {
-			test = Utils.getNewEntry(i,idFR,idIT,idSP,pathFR,pathIT,pathSP);
+			test = Utils.getNewEntry(i,idFR,idIT,idSP,france,italy,spain);
 		}
 		
 	}
