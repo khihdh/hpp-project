@@ -1,6 +1,7 @@
 package projet;
 
 import java.io.BufferedWriter;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -18,7 +19,7 @@ public class CsvWriterSimple {
     private static final String NEW_LINE_UNIX = "\n";
     private static final String NEW_LINE_WINDOWS = "\r\n";
 
-    public static void main(String[] args) throws IOException {
+    public static void lol(String[] args) throws IOException {
 
         CsvWriterSimple writer = new CsvWriterSimple();
         String currentPath = System.getProperty("user.dir");
@@ -93,7 +94,7 @@ public class CsvWriterSimple {
     private static List<String[]> createCsvDataSpecial() {
 
         String[] header = {"4", "Daniel", "Robinson", "1995-08-21 00:00:00","1582161158.5235808","-1","course �  pieds avec la grand-mère au marché"};
-        String[] record1 = {"Dell", "P3421W", "Dell 34, Curved, USB-C Monitor", "2499.00"};
+        String[] record1 = {"Arthur", "lol", "Dell 34, Curved, USB-C Monitor", "2499.00"};
         String[] record2 = {"Dell", "", "Alienware 38 Curved \"Gaming Monitor\"", "6699.00"};
         String[] record3 = {"Samsung", "", "49\" Dual QHD, QLED, HDR1000", "6199.00"};
         String[] record4 = {"Samsung", "", "Promotion! Special Price\n49\" Dual QHD, QLED, HDR1000", "4999.00"};
