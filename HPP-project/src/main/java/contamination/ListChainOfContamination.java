@@ -26,7 +26,7 @@ public class ListChainOfContamination {
 
 	public ArrayList<ChainOfContamination> top3() {
 		
-		ArrayList<ChainOfContamination> top3contamination = new ArrayList();
+		ArrayList<ChainOfContamination> top3contamination = new ArrayList<ChainOfContamination>();
 		
 		for (int i=0; i<3; i++) {
 			top3contamination.add(this.listChainOfContamination.get(i));
@@ -35,12 +35,11 @@ public class ListChainOfContamination {
 		return top3contamination;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void sortListChainOfContamination() {
 		Collections.sort(this.listChainOfContamination,new ChainOfContaminationComparatore());;
 	}
 	
-	public class ChainOfContaminationComparatore implements Comparator{
+	public class ChainOfContaminationComparatore implements Comparator<Object>{
 		public int compare(Object o1,Object o2){  
 			ChainOfContamination c1=(ChainOfContamination)o1;  
 			ChainOfContamination c2=(ChainOfContamination)o2;  
