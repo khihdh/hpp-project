@@ -34,7 +34,7 @@ class TestUtils {
 		
 		Pair<Person,Integer> pair;
 		
-		Person test;
+		Pair<Person, Integer> test;
 		
 		for(int i =0; i<19; i++) {
 			test = Utils.getNewEntry(i,idFR,idIT,idSP,pathFR,pathIT,pathSP);

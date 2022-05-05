@@ -55,7 +55,7 @@ public class ChainOfContamination {
 	 * @param index in the main chain
 	 */
 	public void addChildChain(SubChainOfContamination subchain, Integer index) {
-		Pair<SubChainOfContamination, Integer> childchain = new Pair<>(subchain, index);
+		Pair<SubChainOfContamination, Integer> childchain = new Pair<SubChainOfContamination, Integer>(subchain, index);
 		ListChildChain.add(childchain);
 	}
 
