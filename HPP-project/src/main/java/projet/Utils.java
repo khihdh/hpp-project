@@ -34,14 +34,16 @@ public class Utils {
 		return res;
 	}
 	
-	public static String getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+	public static Person getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+		Person personToReturn = null;
+		
 		try  
 		{  
 			File france=new File(franceDataPath);
 			File italy=new File(italyDataPath);
 			File spain=new File(spainDataPath);
 			
-			Person personToReturn = null;
+			
 			
 			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
 			if(idToRead == 0) {
@@ -180,16 +182,16 @@ public class Utils {
 				}
 			}
 			
-			System.out.println("");
-			System.out.println("Ajout de la personne : " + personToReturn.getPerson_id() + " , " + personToReturn.getCountry_id());	
-			System.out.println("");  
+			//System.out.println("");
+			//System.out.println("Ajout de la personne : " + personToReturn.getPerson_id() + " , " + personToReturn.getCountry_id());	
+			//System.out.println("");  
 		}  
 		catch(IOException e ){  
 			e.printStackTrace();  
 		}
 		
 		
-		return "";
+		return personToReturn;
 	}
 	
 	

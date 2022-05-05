@@ -2,6 +2,9 @@
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.Test;
+
+import person.Person;
+
 import static org.junit.Assert.assertEquals;
 
 import projet.Utils;
@@ -29,13 +32,13 @@ class TestUtils {
 		Pair<Integer, Integer> idIT = new Pair<>(0, 0);
 		Pair<Integer, Integer> idSP = new Pair<>(0, 0);
 		
-		String test;
+		Person test;
 		
 		for(int i =0; i<19; i++) {
 			test = Utils.getNewEntry(i,idFR,idIT,idSP,pathFR,pathIT,pathSP);
-			System.out.println(idFR.getKey() + " : " + idFR.getValue());
-			System.out.println(idIT.getKey() + " : " + idIT.getValue());
-			System.out.println(idSP.getKey() + " : " + idSP.getValue());
+			//System.out.println(idFR.getKey() + " : " + idFR.getValue());
+			//System.out.println(idIT.getKey() + " : " + idIT.getValue());
+			//System.out.println(idSP.getKey() + " : " + idSP.getValue());
 		}
 		
 	}
