@@ -12,25 +12,30 @@ import person.Person;
 public class Main {
 
 	public static void main() {
-		String path = "";
 		//Instantiate every components
-				/*ListChainOfContamination inQueue = new ListChainOfContamination();
+				ListChainOfContamination inQueue = new ListChainOfContamination();
 				int idToRead =0;
 				Pair<Integer, Integer> idFR = new Pair<>(0,0) ;
 				Pair<Integer, Integer> idIT = new Pair<>(0,0) ;
 				Pair<Integer, Integer> idSP = new Pair<>(0,0) ;
-				String franceDataPath ="";
-				String italyDataPath ="";
-				String spainDataPath ="";
+				String currentPath = System.getProperty("user.dir");
+				String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
+				String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
+				String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+				
 				Person personne = null;
+				Integer fin = 0;
+				Pair pair = new Pair<Person,Integer>(personne, fin);
 				
 				//Start timer
 				long startTime = System.nanoTime();
 				
 				//boucle à faire après
-				Person personne =  Utils.getNewEntry(idToRead,idFR,idIT,idSP,franceDataPath,italyDataPath,spainDataPath);
+				while (fin.equals(0)) {
+				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
 				idToRead++;
-				
+				System.out.println(personne);
+				}
 				
 
 				//ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit
@@ -47,7 +52,7 @@ public class Main {
 				//ThreadUtils.shutdownAndAwaitTermination(service);
 
 				//Print execution time
-				System.out.println(System.nanoTime()-startTime);*/
+				System.out.println(System.nanoTime()-startTime);
 
 	}
 

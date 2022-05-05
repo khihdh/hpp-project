@@ -42,7 +42,7 @@ public class ChainOfContamination {
 		return score;
 	}
 	
-	int getIndex() {
+	public int getIndex() {
 		return Index;
 	}
 	
