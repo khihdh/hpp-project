@@ -43,9 +43,9 @@ public class Utils {
 		return res;
 	}
 	
-	public static Person getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+	public static Pair<Person,Integer> getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
 		Person personToReturn = null;
-		
+		Integer fin = 0;
 		try  
 		{  
 			File france=new File(franceDataPath);
@@ -199,8 +199,12 @@ public class Utils {
 			e.printStackTrace();  
 		}
 		
+		if (idFR.getKey().equals(-1) && idIT.getKey().equals(-1) && idSP.getKey().equals(-1))
+		{
+			fin = 1;
+		}
 		
-		return personToReturn;
+		return new Pair(personToReturn,fin);
 	}
 	
 	
