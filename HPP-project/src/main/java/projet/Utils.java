@@ -48,7 +48,7 @@ public class Utils {
 			File italy=new File(italyDataPath);
 			File spain=new File(spainDataPath);
 			
-			Person personToReturn;
+			Person personToReturn = null;
 			
 			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
 			if(idToRead == 0) {
@@ -60,8 +60,13 @@ public class Utils {
 				String line;  
 				if((line=br.readLine())!=null)  
 				{  
-					System.out.println(line);
+					//System.out.println(line);
 					//france countryid = 0
+					System.out.println(line);
+					/*
+					for(int i=0; i<line.length();i++) {
+						System.out.println(line.charAt(i));
+					}*/
 					pf = new Person((short)0,line);
 					idFR.setValue(pf.getPerson_id());
 				}  
@@ -72,7 +77,7 @@ public class Utils {
 				br=new BufferedReader(fr);  //creates a buffering character input stream  
 				if((line=br.readLine())!=null)  
 				{  
-					System.out.println(line);
+					//System.out.println(line);
 					//italy countryid = 1
 					pi = new Person((short)1,line);
 					idIT.setValue(pi.getPerson_id());
@@ -83,12 +88,19 @@ public class Utils {
 				br=new BufferedReader(fr);  //creates a buffering character input stream  
 				if((line=br.readLine())!=null)  
 				{  
-					System.out.println(line);
+					//System.out.println(line);
 					//spain countryid = 2
 					ps = new Person((short)2,line);
 					idSP.setValue(ps.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
+				System.out.println("");
+				System.out.println("");
+				System.out.println("");
+				System.out.println(" id to read :" + idToRead);
+				System.out.println(pf.getPerson_id());
+				System.out.println(pi.getPerson_id());
+				System.out.println(ps.getPerson_id());
 				
 				if(idToRead == pf.getPerson_id()) {
 					idFR.setKey(idFR.getKey() + 1);
@@ -96,19 +108,94 @@ public class Utils {
 				}else if(idToRead == pi.getPerson_id()) {
 					idIT.setKey(idIT.getKey() + 1);
 					personToReturn = pi;
-				}else if(idToRead == pi.getPerson_id()) {
+				}else if(idToRead == ps.getPerson_id()) {
 					idSP.setKey(idSP.getKey() + 1);
 					personToReturn = ps;
 				}
 			}else {
+				short countryId = -1;
 				
+				if(idToRead == idFR.getValue()) {
+					countryId = 0;
+				}else if(idToRead == idIT.getValue()) {
+					countryId = 1;
+				}else if(idToRead == idSP.getValue()) {
+					countryId = 2;
+				}
+				
+				
+				String line;  
+				
+				switch(countryId) {
+				case 0:
+					
+					//read the current line and creates a person with the data and increment country id by 1
+					if((line = FileUtils.readLines(france).get(idFR.getKey()))!=null)  
+					{  
+						//System.out.println(line);
+						personToReturn = new Person(countryId,line);
+						idFR.setKey(idFR.getKey()+1);
+					}
+					
+					//read the next line to get the next person id
+					if((line = FileUtils.readLines(france).get(idFR.getKey()+1))!=null)  
+					{  
+						idFR.setValue(returnId(line));
+					}else {
+						idFR.setKey(-1);
+						idFR.setValue(-1);
+					}
+					
+					break;
+				case 1:
+					//read the current line and creates a person with the data and increment country id by 1
+					if((line = FileUtils.readLines(italy).get(idIT.getKey()))!=null)  
+					{  
+						//System.out.println(line);
+						personToReturn = new Person(countryId,line);
+						idIT.setKey(idIT.getKey()+1);
+					}
+					
+					//read the next line to get the next person id
+					if((line = FileUtils.readLines(italy).get(idIT.getKey()+1))!=null)  
+					{  
+						idIT.setValue(returnId(line));
+					}else {
+						idIT.setKey(-1);
+						idIT.setValue(-1);
+					}
+					break;
+				case 2:
+					//read the current line and creates a person with the data and increment country id by 1
+					if((line = FileUtils.readLines(spain).get(idSP.getKey()))!=null)  
+					{  
+						//System.out.println(line);
+						personToReturn = new Person(countryId,line);
+						idSP.setKey(idSP.getKey()+1);
+					}
+					
+					//read the next line to get the next person id
+					if((line = FileUtils.readLines(spain).get(idSP.getKey()+1))!=null)  
+					{  
+						idSP.setValue(returnId(line));
+					}else {
+						idSP.setKey(-1);
+						idSP.setValue(-1);
+					}
+					break;
+				}
 			}
 			
+			System.out.println("");
+			System.out.println("");
+			System.out.println("");
+			System.out.println("Ajout de la personne : " + personToReturn.getPerson_id() + " , " + personToReturn.getCountry_id());	
 			   
 		}  
 		catch(IOException e ){  
 			e.printStackTrace();  
 		}
+		
 		
 		return "";
 	}
