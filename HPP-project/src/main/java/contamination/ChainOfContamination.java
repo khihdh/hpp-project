@@ -47,9 +47,16 @@ public class ChainOfContamination {
 		listPerson = parentChain.getListPerson();
 
 	}
+
+	/**
+	 * @param personToAdd
+	 */
+	public void addPerson(Person personToAdd) {
+		listPerson.add(personToAdd);
+	}
 	
 	/**
-	 * @param personToAdd but obligatory to this listOfPerson
+	 * @param personToAdd but not obligatory to this listOfPerson
 	 */
 	public void updateIndex(Person personToAdd) {
 		int length = listPerson.size();
@@ -62,39 +69,32 @@ public class ChainOfContamination {
 	}
 	
 	/**
-	 * @param personToAdd and already add obligatory to this listOfPerson
+	 * @param personToAdd but not obligatory to this listOfPerson
 	 * 
 	 * Please update the index before, in order to gain time
 	 */
 	public void updateScore(Person personToAdd) {
 		
-		int datePersonToAdd;
-		int dateSelectedPers;
+		//int datePersonToAdd;
+		//int dateSelectedPers;
 		int length = listPerson.size();
 		Person selectedPerson;
 		int newScore = 0;
 		for (int i = this.index; i<length; i++) {
 			selectedPerson = listPerson.get(i);
 			
-			datePersonToAdd = personToAdd.getDiagnosed_ts();
+			//datePersonToAdd = personToAdd.getDiagnosed_ts();
 			//System.out.println("personToAdd score " + datePersonToAdd);
-			dateSelectedPers = selectedPerson.getDiagnosed_ts();
-			//System.out.println("pers origin of score " + dateSelectedPers);
+			//dateSelectedPers = selectedPerson.getDiagnosed_ts();
+			//System.out.println("person origin of score " + dateSelectedPers);
 			
-			int dif = datePersonToAdd - dateSelectedPers;
-			//System.out.println("difference of score " +Integer.toString(dif));
+			//int difference = datePersonToAdd - dateSelectedPers;
+			//System.out.println("difference of score " +Integer.toString(difference));
 			newScore += Utils.calculateScore(selectedPerson.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
-			//System.out.println("updatescore " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
+			//System.out.println("update Score " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
 
 		}
 		this.score = newScore;
-	}
-	
-	/**
-	 * @param personToAdd
-	 */
-	public void addPerson(Person personToAdd) {
-		listPerson.add(personToAdd);
 	}
 
 	// Getters and Setters
