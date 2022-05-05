@@ -25,7 +25,7 @@ public class Main {
 				
 				Person personne = null;
 				Integer fin = 0;
-				Pair pair = new Pair<Person,Integer>(personne, fin);
+				Pair<Person,Integer> pair;
 				
 				//Start timer
 				long startTime = System.nanoTime();
@@ -33,6 +33,8 @@ public class Main {
 				//boucle à faire après
 				while (fin.equals(0)) {
 				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
+				personne = pair.getKey();
+				fin = pair.getValue();
 				idToRead++;
 				System.out.println(personne);
 				}

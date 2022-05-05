@@ -19,7 +19,7 @@ public class CsvWriterSimple {
     private static final String NEW_LINE_UNIX = "\n";
     private static final String NEW_LINE_WINDOWS = "\r\n";
 
-    public static void lol(String[] args) throws IOException {
+    public static void main(String[] args) throws IOException {
 
         CsvWriterSimple writer = new CsvWriterSimple();
         String currentPath = System.getProperty("user.dir");
