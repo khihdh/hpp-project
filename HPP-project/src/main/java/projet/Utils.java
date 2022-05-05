@@ -1,14 +1,21 @@
 package projet;
 
+import static org.junit.Assert.assertTrue;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import org.apache.commons.io.FileUtils;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Stream;
 
 import person.Person;
 
+import java.io.BufferedWriter;
 public class Utils {
 
 	/**
@@ -198,6 +205,7 @@ public class Utils {
 		String[] listeDeux = (line.split(",", 2));
 		return Integer.parseInt(listeDeux[0]);
 	}
+	
 	
 	public void write(String top3) {
 				//On �crit les r�sultats
