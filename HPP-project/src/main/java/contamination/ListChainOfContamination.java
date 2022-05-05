@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import person.Person;
+import projet.Utils;
 
 /**
  * 
@@ -66,7 +67,7 @@ public class ListChainOfContamination {
 	 */
 	
 	public void addPerson(Person personToAdd) {
-		
+				
 		int ListLength = listChainOfContamination.size();
 		int TargetRootId = personToAdd.getContaminated_by();
 		int ChainLength; // of the selected one
@@ -80,6 +81,7 @@ public class ListChainOfContamination {
 		if (TargetRootId == -1) {
 			newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
 			listChainOfContamination.add(newChain);
+			this.updateListOfPerson(personToAdd);
 			return;
 		}
 		
@@ -91,8 +93,9 @@ public class ListChainOfContamination {
 				
 				if(TargetRootId == selectedChain.getListPerson().get(ChainLength).getPerson_id()) {
 					selectedChain.addPerson(personToAdd);
-						return;
-					}
+					this.updateListOfPerson(personToAdd);
+					return;
+				}
 			}
 			
 			// Get contaminated by a person of a chain within 14 days 
@@ -110,17 +113,27 @@ public class ListChainOfContamination {
 						
 						newChain = new ChainOfContamination(selectedChain);
 						listChainOfContamination.add(newChain);
+						this.updateListOfPerson(personToAdd);
 						return;
 					}
 				}
+				
 				// Creation of a new independent list 
-				for (int j = 0; j<ChainIndex; j++ ) {
-					newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
-					listChainOfContamination.add(newChain);
-					return;
-				}
+				newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
+				listChainOfContamination.add(newChain);
+				this.updateListOfPerson(personToAdd);
+				return;
 			}
 		}		
+	}
+	
+	public void updateListOfPerson(Person personToAdd) {
+		int ListLength = listChainOfContamination.size();
+
+		for (int i=0; i<ListLength; i++) {
+			listChainOfContamination.get(i).updateIndex(personToAdd);
+			listChainOfContamination.get(i).updateScore(personToAdd);
+		}
 	}
 	
 }

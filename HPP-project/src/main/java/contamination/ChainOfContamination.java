@@ -29,7 +29,7 @@ public class ChainOfContamination {
 		this.country = country;
 		this.rootId = rootId;
 		this.index = 0;
-		score = 10;
+		score = 0;
 		
 		listPerson = new ArrayList<Person>();
 		listPerson.add(p);
@@ -47,35 +47,9 @@ public class ChainOfContamination {
 		listPerson = parentChain.getListPerson();
 
 	}
-
-	/**
-	 * @param personToAdd and already add to the listOfPerson
-	 * 
-	 * read the list of person until length - 1 because we already add the personToAdd to the listOfPerson
-	 */
-	public void updateScore(Person personToAdd) {
-		
-		int datePersonToAdd;
-		int dateSelectedPers;
-		int length = listPerson.size();
-		Person selectedPerson;
-		
-		selectedPerson = listPerson.get(index);
-		
-		datePersonToAdd = personToAdd.getDiagnosed_ts();
-		System.out.println("personToAdd score " + datePersonToAdd);
-		dateSelectedPers = selectedPerson.getDiagnosed_ts();
-		System.out.println("pers origin of score " + dateSelectedPers);
-		
-		int dif = datePersonToAdd - dateSelectedPers;
-		System.out.println("difference of score " +Integer.toString(dif));
-		this.score = Utils.calculateScore(selectedPerson.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
-		//System.out.println("updatescore " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
-
-	}
 	
 	/**
-	 * @param personToAdd but not yet add to the list
+	 * @param personToAdd but obligatory to this listOfPerson
 	 */
 	public void updateIndex(Person personToAdd) {
 		int length = listPerson.size();
@@ -88,12 +62,39 @@ public class ChainOfContamination {
 	}
 	
 	/**
+	 * @param personToAdd and already add obligatory to this listOfPerson
+	 * 
+	 * Please update the index before, in order to gain time
+	 */
+	public void updateScore(Person personToAdd) {
+		
+		int datePersonToAdd;
+		int dateSelectedPers;
+		int length = listPerson.size();
+		Person selectedPerson;
+		int newScore = 0;
+		for (int i = this.index; i<length; i++) {
+			selectedPerson = listPerson.get(i);
+			
+			datePersonToAdd = personToAdd.getDiagnosed_ts();
+			//System.out.println("personToAdd score " + datePersonToAdd);
+			dateSelectedPers = selectedPerson.getDiagnosed_ts();
+			//System.out.println("pers origin of score " + dateSelectedPers);
+			
+			int dif = datePersonToAdd - dateSelectedPers;
+			//System.out.println("difference of score " +Integer.toString(dif));
+			newScore += Utils.calculateScore(selectedPerson.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
+			//System.out.println("updatescore " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
+
+		}
+		this.score = newScore;
+	}
+	
+	/**
 	 * @param personToAdd
 	 */
 	public void addPerson(Person personToAdd) {
 		listPerson.add(personToAdd);
-		updateScore(personToAdd);
-		updateIndex(personToAdd);
 	}
 
 	// Getters and Setters
