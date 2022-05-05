@@ -19,7 +19,7 @@ public class ChainOfContamination {
 	
 	private int country;
 	private int rootId;
-	private static int score;
+	protected static int score;
 	private ArrayList<Person> ListPerson;
 	private int Index;
 	/**

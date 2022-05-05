@@ -23,4 +23,5 @@ public class SubChainOfContamination extends ChainOfContamination{
 	public void setParentChain(ChainOfContamination parentChain) {
 		this.parentChain = parentChain;
 	}
+	
 }

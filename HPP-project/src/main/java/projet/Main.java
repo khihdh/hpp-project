@@ -1,19 +1,24 @@
 package projet;
 
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import contamination.ChainOfContamination;
 import contamination.ListChainOfContamination;
 import person.Person;
 
 public class Main {
+	
+	static ArrayList<ChainOfContamination> listTop3 = new ArrayList();
 
 	public static void main() {
 		//Instantiate every components
 				ListChainOfContamination inQueue = new ListChainOfContamination();
+				
 				int idToRead =0;
 				Pair<Integer, Integer> idFR = new Pair<>(0,0) ;
 				Pair<Integer, Integer> idIT = new Pair<>(0,0) ;
@@ -30,13 +35,18 @@ public class Main {
 				//Start timer
 				long startTime = System.nanoTime();
 				
-				//boucle à faire après
+				//boucle ï¿½ faire aprï¿½s
 				while (fin.equals(0)) {
-				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
-				idToRead++;
-				personne = (Person) pair.getKey();
-                fin = (Integer) pair.getValue();
-				System.out.println(personne);
+					pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
+					idToRead++;
+					personne = (Person) pair.getKey();
+	                fin = (Integer) pair.getValue();
+					System.out.println(personne);
+					
+					inQueue.addPerson(personne); // first person have an unkown contaminatore 
+					
+					listTop3 = inQueue.top3();
+
 				}
 				
 

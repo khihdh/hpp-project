@@ -83,7 +83,11 @@ public class ListChainOfContamination {
 						return;
 					}
 				}
-				
+				// Creation of a new independent list 
+				for (int j = 0; j<ChainIndex; j++ ) {
+					ChainOfContamination newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
+					return;
+				}
 			}
 		}		
 	}
