@@ -16,51 +16,39 @@ import projet.Utils;
 
 
 public class ChainOfContamination {
-	
+
 	private int country;
 	private int rootId;
-	protected static int score;
-	private ArrayList<Person> ListPerson;
 	private int Index;
-	/**
-	 * SubChainOfContamination is a sub chain from this main chain
-	 * Integer is the index of the main chain linked with the sub chain 
-	 */
-	private ArrayList<Pair<SubChainOfContamination, Integer>> ListChildChain = null;
+	protected static int score;
 
+	private ArrayList<Person> ListPerson;
 
 	public ChainOfContamination(int country, int rootId, Person p) {
 		super();
 		this.country = country;
 		this.rootId = rootId;
+		this.Index = 0;
 		score = 0;
+		
 		ListPerson = new ArrayList<Person>();
 		ListPerson.add(p);
-		Index = 0;
-	}
-	public static int getScore() {
-		return score;
+
 	}
 	
-	public int getIndex() {
-		return Index;
-	}
-	
-	public ArrayList<Pair<SubChainOfContamination, Integer>> getListChildChain() {
-		return ListChildChain;
-	}
-	/**
-	 * 
-	 * @param subchain to link to the main chain
-	 * @param index in the main chain
-	 */
-	public void addChildChain(SubChainOfContamination subchain, Integer index) {
-		Pair<SubChainOfContamination, Integer> childchain = new Pair<>(subchain, index);
-		ListChildChain.add(childchain);
+	// Create a new list with an old one
+	public ChainOfContamination(ChainOfContamination parentChain) {
+		super();
+		this.country = parentChain.getCountry();
+		this.rootId = parentChain.getRootId();
+		this.Index = parentChain.getIndex();
+		score = parentChain.getScore();
+		
+		ListPerson = parentChain.getListPerson();
+
 	}
 
 	/**
-	 * 
 	 * @param personToAdd but not yet add to the list
 	 */
 	public void updateScore(Person personToAdd) {
@@ -72,6 +60,9 @@ public class ChainOfContamination {
 		}
 	}
 	
+	/**
+	 * @param personToAdd but not yet add to the list
+	 */
 	public void updateIndex(Person personToAdd) {
 		int length = ListPerson.size();
 		int staticIndex = Index;
@@ -82,12 +73,33 @@ public class ChainOfContamination {
 		}
 	}
 	
+	/**
+	 * @param personToAdd
+	 */
 	public void addPerson(Person personToAdd) {
 		ListPerson.add(personToAdd);
 		updateScore(personToAdd);
 		updateIndex(personToAdd);
 	}
+
+	// Getters and Setters
 	
+	public int getCountry() {
+		return country;
+	}
+	
+	public int getRootId() {
+		return rootId;
+	}
+	
+	public int getScore() {
+		return score;
+	}
+	
+	public int getIndex() {
+		return Index;
+	}
+
 	int getListPersonSize() {
 		return ListPerson.size();
 	}
@@ -95,14 +107,6 @@ public class ChainOfContamination {
 	ArrayList<Person> getListPerson() {
 		return ListPerson;
 	}
-	
-	// For the moment we don't delete person but just change his ParticipateToChain boolean
-	/*public void deletePerson(int personId) {
-		for (int i=0; i<ListPerson.size() ;i++) {
-			if (ListPerson.get(i).getPerson_id() == personId) {
-				ListPerson.remove(i);
-			}
-		}
-			
-	}*/
+
+
 }
