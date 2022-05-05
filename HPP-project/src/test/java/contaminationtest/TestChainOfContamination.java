@@ -30,6 +30,8 @@ public class TestChainOfContamination {
 			Person testp = new Person ((short)0,s);
 			System.out.println((i+1)+" person date = " + testp.getDiagnosed_ts());
 			chainTest.addPerson(testp);
+			chainTest.updateIndex(testp);
+			chainTest.updateScore(testp);
 			System.out.println((i+1)+" adding, index = "+ chainTest.getIndex());
 			System.out.println((i+1)+" adding, score = "+ chainTest.getScore());
 
