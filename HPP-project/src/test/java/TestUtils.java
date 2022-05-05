@@ -8,6 +8,7 @@ import person.Person;
 import static org.junit.Assert.assertEquals;
 
 import projet.Utils;
+import projet.Main;
 import projet.Pair;
 
 class TestUtils {
@@ -49,5 +50,10 @@ class TestUtils {
         //System.out.println(Utils.returnId(exemple1));
         assertEquals(4, Utils.returnId(exemple1));
 	}
+	
+	@Test
+    public void testMain() {
+        Main.main();
+    }
 
 }

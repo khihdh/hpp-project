@@ -34,6 +34,8 @@ public class Main {
 				while (fin.equals(0)) {
 				pair =  Utils.getNewEntry(idToRead,idFR,idIT,idSP, pathFR, pathIT, pathSP);
 				idToRead++;
+				personne = (Person) pair.getKey();
+                fin = (Integer) pair.getValue();
 				System.out.println(personne);
 				}
 				
