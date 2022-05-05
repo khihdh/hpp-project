@@ -53,13 +53,6 @@ public class Utils {
 				String line;  
 				if((line=br.readLine())!=null)  
 				{  
-					//System.out.println(line);
-					//france countryid = 0
-					System.out.println(line);
-					/*
-					for(int i=0; i<line.length();i++) {
-						System.out.println(line.charAt(i));
-					}*/
 					pf = new Person((short)0,line);
 					idFR.setValue(pf.getPerson_id());
 				}  
@@ -87,24 +80,29 @@ public class Utils {
 					idSP.setValue(ps.getPerson_id());
 				}  
 				fr.close();    //closes the stream and release the resources
-				System.out.println("");
-				System.out.println("");
-				System.out.println("");
-				System.out.println(" id to read :" + idToRead);
-				System.out.println(pf.getPerson_id());
-				System.out.println(pi.getPerson_id());
-				System.out.println(ps.getPerson_id());
 				
 				if(idToRead == pf.getPerson_id()) {
 					idFR.setKey(idFR.getKey() + 1);
 					personToReturn = pf;
+					if((line = FileUtils.readLines(france).get(1))!=null) {
+						idFR.setValue(returnId(line));
+					}
 				}else if(idToRead == pi.getPerson_id()) {
 					idIT.setKey(idIT.getKey() + 1);
 					personToReturn = pi;
+					if((line = FileUtils.readLines(italy).get(1))!=null) {
+						idIT.setValue(returnId(line));
+					}
 				}else if(idToRead == ps.getPerson_id()) {
 					idSP.setKey(idSP.getKey() + 1);
 					personToReturn = ps;
+					if((line = FileUtils.readLines(spain).get(1))!=null) {
+						idSP.setValue(returnId(line));
+					}
 				}
+				
+				 
+				
 			}else {
 				short countryId = -1;
 				
@@ -130,11 +128,12 @@ public class Utils {
 						idFR.setKey(idFR.getKey()+1);
 					}
 					
-					//read the next line to get the next person id
-					if((line = FileUtils.readLines(france).get(idFR.getKey()+1))!=null)  
-					{  
-						idFR.setValue(returnId(line));
-					}else {
+					try {
+						//read the next line to get the next person id
+						if((line = FileUtils.readLines(france).get(idFR.getKey()))!=null)
+							idFR.setValue(returnId(line));
+					}catch(IndexOutOfBoundsException e) {
+						//e.printStackTrace();
 						idFR.setKey(-1);
 						idFR.setValue(-1);
 					}
@@ -149,11 +148,12 @@ public class Utils {
 						idIT.setKey(idIT.getKey()+1);
 					}
 					
-					//read the next line to get the next person id
-					if((line = FileUtils.readLines(italy).get(idIT.getKey()+1))!=null)  
-					{  
-						idIT.setValue(returnId(line));
-					}else {
+					try {
+						//read the next line to get the next person id
+						if((line = FileUtils.readLines(italy).get(idIT.getKey()))!=null)
+							idIT.setValue(returnId(line));
+					}catch(IndexOutOfBoundsException e) {
+						//e.printStackTrace();
 						idIT.setKey(-1);
 						idIT.setValue(-1);
 					}
@@ -167,11 +167,12 @@ public class Utils {
 						idSP.setKey(idSP.getKey()+1);
 					}
 					
-					//read the next line to get the next person id
-					if((line = FileUtils.readLines(spain).get(idSP.getKey()+1))!=null)  
-					{  
-						idSP.setValue(returnId(line));
-					}else {
+					try {
+						//read the next line to get the next person id
+						if((line = FileUtils.readLines(spain).get(idSP.getKey()))!=null)
+							idSP.setValue(returnId(line));
+					}catch(IndexOutOfBoundsException e) {
+						//e.printStackTrace();
 						idSP.setKey(-1);
 						idSP.setValue(-1);
 					}
@@ -180,10 +181,8 @@ public class Utils {
 			}
 			
 			System.out.println("");
-			System.out.println("");
-			System.out.println("");
 			System.out.println("Ajout de la personne : " + personToReturn.getPerson_id() + " , " + personToReturn.getCountry_id());	
-			   
+			System.out.println("");  
 		}  
 		catch(IOException e ){  
 			e.printStackTrace();  
@@ -195,7 +194,7 @@ public class Utils {
 	
 	
 	public static int returnId(String line) {
-		String[] listeDeux = (line.split(",", 2));
+		String[] listeDeux = (line.replaceAll("\"","").split(",", 2));
 		return Integer.parseInt(listeDeux[0]);
 	}
 	

@@ -29,9 +29,15 @@ class TestUtils {
 		Pair<Integer, Integer> idIT = new Pair<>(0, 0);
 		Pair<Integer, Integer> idSP = new Pair<>(0, 0);
 		
-		int idToRead = 0;
+		String test;
 		
-		String test = Utils.getNewEntry(idToRead,idFR,idIT,idSP,pathFR,pathIT,pathSP);
+		for(int i =0; i<19; i++) {
+			test = Utils.getNewEntry(i,idFR,idIT,idSP,pathFR,pathIT,pathSP);
+			System.out.println(idFR.getKey() + " : " + idFR.getValue());
+			System.out.println(idIT.getKey() + " : " + idIT.getValue());
+			System.out.println(idSP.getKey() + " : " + idSP.getValue());
+		}
+		
 	}
 	
 	@Test

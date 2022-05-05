@@ -19,9 +19,9 @@ public class Person {
     	String[] split = null;
     	
     	split = initial.replaceAll("\"","").replaceAll(" ", "").split(",");
-    	System.out.println(split[0]);
-    	System.out.println(split[4]);
-    	System.out.println(split[5]);
+    	//System.out.println(split[0]);
+    	//System.out.println(split[4]);
+    	//System.out.println(split[5]);
     	person_id = Integer.parseInt(split[0]);
     	diagnosed_ts = (int)(Double.parseDouble(split[4])*1000.0);
     	//diagnosed_ts = new Timestamp((long)(Double.parseDouble(split[4])*1000.0));
