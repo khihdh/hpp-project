@@ -19,20 +19,20 @@ public class ChainOfContamination {
 
 	private int country;
 	private int rootId;
-	private int Index;
+	private int index;
 	protected static int score;
 
-	private ArrayList<Person> ListPerson;
+	private ArrayList<Person> listPerson;
 
 	public ChainOfContamination(int country, int rootId, Person p) {
 		super();
 		this.country = country;
 		this.rootId = rootId;
-		this.Index = 0;
+		this.index = 0;
 		score = 0;
 		
-		ListPerson = new ArrayList<Person>();
-		ListPerson.add(p);
+		listPerson = new ArrayList<Person>();
+		listPerson.add(p);
 
 	}
 	
@@ -41,45 +41,60 @@ public class ChainOfContamination {
 		super();
 		this.country = parentChain.getCountry();
 		this.rootId = parentChain.getRootId();
-		this.Index = parentChain.getIndex();
+		this.index = parentChain.getIndex();
 		score = parentChain.getScore();
 		
-		ListPerson = parentChain.getListPerson();
+		listPerson = parentChain.getListPerson();
 
 	}
 
 	/**
-	 * @param personToAdd but not yet add to the list
+	 * @param personToAdd
 	 */
-	public void updateScore(Person personToAdd) {
-		int length = ListPerson.size();
-		Person pers;
-		for (int i= Index; i<length-1; i++) {
-			pers = ListPerson.get(i);
-			score = Utils.calculateScore(pers.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
-		}
+	public void addPerson(Person personToAdd) {
+		listPerson.add(personToAdd);
 	}
 	
 	/**
-	 * @param personToAdd but not yet add to the list
+	 * @param personToAdd but not obligatory to this listOfPerson
 	 */
 	public void updateIndex(Person personToAdd) {
-		int length = ListPerson.size();
-		int staticIndex = Index;
+		int length = listPerson.size();
+		int staticIndex = index;
 		for (int i = staticIndex ; i<length; i++) {
-			while((ListPerson.get(i).getDiagnosed_ts()-personToAdd.getDiagnosed_ts()) > 1209600 ) {
-				Index = i;
+			while((listPerson.get(i).getDiagnosed_ts()-personToAdd.getDiagnosed_ts()) > 1209600 ) {
+				index = i;
 			}
 		}
 	}
 	
 	/**
-	 * @param personToAdd
+	 * @param personToAdd but not obligatory to this listOfPerson
+	 * 
+	 * Please update the index before, in order to gain time
 	 */
-	public void addPerson(Person personToAdd) {
-		ListPerson.add(personToAdd);
-		updateScore(personToAdd);
-		updateIndex(personToAdd);
+	public void updateScore(Person personToAdd) {
+		
+		//int datePersonToAdd;
+		//int dateSelectedPers;
+		int length = listPerson.size();
+		Person selectedPerson;
+		int newScore = 0;
+		for (int i = this.index; i<length; i++) {
+			selectedPerson = listPerson.get(i);
+			
+			//datePersonToAdd = personToAdd.getDiagnosed_ts();
+			//System.out.println("personToAdd score " + datePersonToAdd);
+			//dateSelectedPers = selectedPerson.getDiagnosed_ts();
+			//System.out.println("person origin of score " + dateSelectedPers);
+			
+			//int difference = datePersonToAdd - dateSelectedPers;
+			//System.out.println("difference of score " +Integer.toString(difference));
+			newScore += Utils.calculateScore(selectedPerson.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
+			//System.out.println("update Score " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
+
+		}
+		this.score = newScore;
 	}
 
 	// Getters and Setters
@@ -97,15 +112,15 @@ public class ChainOfContamination {
 	}
 	
 	public int getIndex() {
-		return Index;
+		return index;
 	}
 
 	int getListPersonSize() {
-		return ListPerson.size();
+		return listPerson.size();
 	}
 	
 	ArrayList<Person> getListPerson() {
-		return ListPerson;
+		return listPerson;
 	}
 
 

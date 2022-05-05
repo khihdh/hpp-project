@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import person.Person;
+import projet.Utils;
 
 /**
  * 
@@ -20,26 +21,25 @@ public class ListChainOfContamination {
 
 	public ListChainOfContamination() {
 		super();
-		listChainOfContamination = new ArrayList<ChainOfContamination>();
+		this.listChainOfContamination = new ArrayList<ChainOfContamination>();
 	}
 
 	public ArrayList<ChainOfContamination> top3() {
 		
-		ArrayList<ChainOfContamination> top3contamination = new ArrayList();
+		ArrayList<ChainOfContamination> top3contamination = new ArrayList<ChainOfContamination>();
 		
 		for (int i=0; i<3; i++) {
-			top3contamination.add(listChainOfContamination.get(i));
+			top3contamination.add(this.listChainOfContamination.get(i));
 		}
 		
 		return top3contamination;
 	}
 	
-	@SuppressWarnings("unchecked")
 	public void sortListChainOfContamination() {
-		Collections.sort(listChainOfContamination,new ChainOfContaminationComparatore());;
+		Collections.sort(this.listChainOfContamination,new ChainOfContaminationComparatore());;
 	}
 	
-	public class ChainOfContaminationComparatore implements Comparator{
+	public class ChainOfContaminationComparatore implements Comparator<Object>{
 		public int compare(Object o1,Object o2){  
 			ChainOfContamination c1=(ChainOfContamination)o1;  
 			ChainOfContamination c2=(ChainOfContamination)o2;  
@@ -66,8 +66,8 @@ public class ListChainOfContamination {
 	 */
 	
 	public void addPerson(Person personToAdd) {
-		
-		int ListLength = listChainOfContamination.size();
+				
+		int ListLength = this.listChainOfContamination.size();
 		int TargetRootId = personToAdd.getContaminated_by();
 		int ChainLength; // of the selected one
 		int ChainIndex; // of the selected one
@@ -79,26 +79,28 @@ public class ListChainOfContamination {
 		// Creation of a new chain
 		if (TargetRootId == -1) {
 			newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
-			listChainOfContamination.add(newChain);
+			this.listChainOfContamination.add(newChain);
+			this.updateListOfPerson(personToAdd);
 			return;
 		}
 		
 		else {				
 			// Get contaminated by the last person of a chain 
 			for (int i = 0; i<ListLength; i++ ) {
-				selectedChain = listChainOfContamination.get(i);
+				selectedChain = this.listChainOfContamination.get(i);
 				ChainLength = selectedChain.getListPersonSize();
 				
 				if(TargetRootId == selectedChain.getListPerson().get(ChainLength).getPerson_id()) {
 					selectedChain.addPerson(personToAdd);
-						return;
-					}
+					this.updateListOfPerson(personToAdd);
+					return;
+				}
 			}
 			
 			// Get contaminated by a person of a chain within 14 days 
 			// Creation of a new list containing the first one
 			for (int i = 0; i<ListLength; i++ ) {
-				selectedChain = listChainOfContamination.get(i);
+				selectedChain = this.listChainOfContamination.get(i);
 				
 				ChainLength = selectedChain.getListPersonSize();
 				ChainIndex = selectedChain.getIndex();
@@ -109,18 +111,28 @@ public class ListChainOfContamination {
 					if (TargetRootId == selectedPerson.getPerson_id()) {
 						
 						newChain = new ChainOfContamination(selectedChain);
-						listChainOfContamination.add(newChain);
+						this.listChainOfContamination.add(newChain);
+						this.updateListOfPerson(personToAdd);
 						return;
 					}
 				}
+				
 				// Creation of a new independent list 
-				for (int j = 0; j<ChainIndex; j++ ) {
-					newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
-					listChainOfContamination.add(newChain);
-					return;
-				}
+				newChain = new ChainOfContamination(personToAdd.getCountry_id(),personToAdd.getPerson_id(), personToAdd);
+				this.listChainOfContamination.add(newChain);
+				this.updateListOfPerson(personToAdd);
+				return;
 			}
 		}		
+	}
+	
+	public void updateListOfPerson(Person personToAdd) {
+		int ListLength = this.listChainOfContamination.size();
+
+		for (int i=0; i<ListLength; i++) {
+			this.listChainOfContamination.get(i).updateIndex(personToAdd);
+			this.listChainOfContamination.get(i).updateScore(personToAdd);
+		}
 	}
 	
 }
