@@ -6,6 +6,15 @@ import person.Person;
 import projet.Pair;
 import projet.Utils;
 
+/**
+ * 
+ * @author madidina
+ * 
+ * @description Class containing informations and the list of person of a chain of contamination 
+ * 
+ */
+
+
 public class ChainOfContamination {
 	
 	private int country;
