@@ -20,7 +20,7 @@ public class ChainOfContamination {
 	private int country;
 	private int rootId;
 	private int index;
-	protected static int score;
+	protected int score;
 
 	private ArrayList<Person> listPerson;
 
@@ -109,6 +109,12 @@ public class ChainOfContamination {
 	
 	public int getScore() {
 		return score;
+	}
+	
+	//only for ListChain Test
+	public void setScore(int newScore) {
+		this.score = newScore;
+		return;
 	}
 	
 	public int getIndex() {
