@@ -23,9 +23,23 @@ public class ListChainOfContamination {
 		super();
 		this.listChainOfContamination = new ArrayList<ChainOfContamination>();
 	}
+	
+	public ListChainOfContamination(ArrayList<ChainOfContamination> listChainOfContamination) {
+		super();
+		this.listChainOfContamination = listChainOfContamination;
+	}
+	
+	public void add(ChainOfContamination chainToAdd) {
+		this.listChainOfContamination.add(chainToAdd);
+	}
 
+	/**
+	 * 
+	 * @return the 3 first chain of contamination of the List sort by score
+	 */
 	public ArrayList<ChainOfContamination> top3() {
 		
+		this.sortListChainOfContamination();
 		ArrayList<ChainOfContamination> top3contamination = new ArrayList<ChainOfContamination>();
 		
 		for (int i=0; i<3; i++) {
@@ -34,7 +48,10 @@ public class ListChainOfContamination {
 		
 		return top3contamination;
 	}
-	
+	/**
+	 * 
+	 * class the chain of contamination sort by descending order score 
+	 */
 	public void sortListChainOfContamination() {
 		Collections.sort(this.listChainOfContamination,new ChainOfContaminationComparatore());;
 	}
@@ -133,6 +150,11 @@ public class ListChainOfContamination {
 			this.listChainOfContamination.get(i).updateIndex(personToAdd);
 			this.listChainOfContamination.get(i).updateScore(personToAdd);
 		}
+	}
+	
+	public int getSize() {
+		
+		return this.listChainOfContamination.size();
 	}
 	
 }
