@@ -16,93 +16,112 @@ import projet.Utils;
 
 
 public class ChainOfContamination {
-	
+
 	private int country;
 	private int rootId;
-	private static int score;
-	private ArrayList<Person> ListPerson;
-	private int Index;
-	/**
-	 * SubChainOfContamination is a sub chain from this main chain
-	 * Integer is the index of the main chain linked with the sub chain 
-	 */
-	private ArrayList<Pair<SubChainOfContamination, Integer>> ListChildChain = null;
+	private int index;
+	protected static int score;
 
+	private ArrayList<Person> listPerson;
 
 	public ChainOfContamination(int country, int rootId, Person p) {
 		super();
 		this.country = country;
 		this.rootId = rootId;
+		this.index = 0;
 		score = 0;
-		ListPerson = new ArrayList<Person>();
-		ListPerson.add(p);
-		Index = 0;
+		
+		listPerson = new ArrayList<Person>();
+		listPerson.add(p);
+
 	}
-	public static int getScore() {
+	
+	// Create a new list with an old one
+	public ChainOfContamination(ChainOfContamination parentChain) {
+		super();
+		this.country = parentChain.getCountry();
+		this.rootId = parentChain.getRootId();
+		this.index = parentChain.getIndex();
+		score = parentChain.getScore();
+		
+		listPerson = parentChain.getListPerson();
+
+	}
+
+	/**
+	 * @param personToAdd
+	 */
+	public void addPerson(Person personToAdd) {
+		listPerson.add(personToAdd);
+	}
+	
+	/**
+	 * @param personToAdd but not obligatory to this listOfPerson
+	 */
+	public void updateIndex(Person personToAdd) {
+		int length = listPerson.size();
+		int staticIndex = index;
+		for (int i = staticIndex ; i<length; i++) {
+			while((listPerson.get(i).getDiagnosed_ts()-personToAdd.getDiagnosed_ts()) > 1209600 ) {
+				index = i;
+			}
+		}
+	}
+	
+	/**
+	 * @param personToAdd but not obligatory to this listOfPerson
+	 * 
+	 * Please update the index before, in order to gain time
+	 */
+	public void updateScore(Person personToAdd) {
+		
+		//int datePersonToAdd;
+		//int dateSelectedPers;
+		int length = listPerson.size();
+		Person selectedPerson;
+		int newScore = 0;
+		for (int i = this.index; i<length; i++) {
+			selectedPerson = listPerson.get(i);
+			
+			//datePersonToAdd = personToAdd.getDiagnosed_ts();
+			//System.out.println("personToAdd score " + datePersonToAdd);
+			//dateSelectedPers = selectedPerson.getDiagnosed_ts();
+			//System.out.println("person origin of score " + dateSelectedPers);
+			
+			//int difference = datePersonToAdd - dateSelectedPers;
+			//System.out.println("difference of score " +Integer.toString(difference));
+			newScore += Utils.calculateScore(selectedPerson.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
+			//System.out.println("update Score " + (personToAdd.getDiagnosed_ts() - pers.getDiagnosed_ts()) );
+
+		}
+		this.score = newScore;
+	}
+
+	// Getters and Setters
+	
+	public int getCountry() {
+		return country;
+	}
+	
+	public int getRootId() {
+		return rootId;
+	}
+	
+	public int getScore() {
 		return score;
 	}
 	
 	public int getIndex() {
-		return Index;
-	}
-	
-	public ArrayList<Pair<SubChainOfContamination, Integer>> getListChildChain() {
-		return ListChildChain;
-	}
-	/**
-	 * 
-	 * @param subchain to link to the main chain
-	 * @param index in the main chain
-	 */
-	public void addChildChain(SubChainOfContamination subchain, Integer index) {
-		Pair<SubChainOfContamination, Integer> childchain = new Pair<>(subchain, index);
-		ListChildChain.add(childchain);
+		return index;
 	}
 
-	/**
-	 * 
-	 * @param personToAdd but not yet add to the list
-	 */
-	public void updateScore(Person personToAdd) {
-		int length = ListPerson.size();
-		Person pers;
-		for (int i= Index; i<length-1; i++) {
-			pers = ListPerson.get(i);
-			score = Utils.calculateScore(pers.getDiagnosed_ts(),personToAdd.getDiagnosed_ts());
-		}
-	}
-	
-	public void updateIndex(Person personToAdd) {
-		int length = ListPerson.size();
-		int staticIndex = Index;
-		for (int i = staticIndex ; i<length; i++) {
-			while((ListPerson.get(i).getDiagnosed_ts()-personToAdd.getDiagnosed_ts()) > 1209600 ) {
-				Index = i;
-			}
-		}
-	}
-	
-	public void addPerson(Person personToAdd) {
-		ListPerson.add(personToAdd);
-		updateScore(personToAdd);
-		updateIndex(personToAdd);
-	}
-	
 	int getListPersonSize() {
-		return ListPerson.size();
+		return listPerson.size();
 	}
 	
 	ArrayList<Person> getListPerson() {
-		return ListPerson;
+		return listPerson;
 	}
-	
-	// For the moment we don't delete person but just change his ParticipateToChain boolean
-	/*public void deletePerson(int personId) {
-		for (int i=0; i<ListPerson.size() ;i++) {
-			if (ListPerson.get(i).getPerson_id() == personId) {
-				ListPerson.remove(i);
-			}
-		}
-			
-	}*/
+
+
 }

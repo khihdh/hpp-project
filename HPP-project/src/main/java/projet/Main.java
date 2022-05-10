@@ -4,20 +4,25 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.LinkedBlockingQueue;
 
+import contamination.ChainOfContamination;
 import contamination.ListChainOfContamination;
 import person.Person;
 
 public class Main {
+	
+	static ArrayList<ChainOfContamination> listTop3 = new ArrayList();
 
 	public static void main() {
 		//Instantiate every components
 				ListChainOfContamination inQueue = new ListChainOfContamination();
+				
 				int idToRead =0;
 				String currentPath = System.getProperty("user.dir");
 				String pathFR = currentPath + "\\src\\main\\resources\\France10M.csv";
