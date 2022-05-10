@@ -5,6 +5,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
 
 import org.junit.jupiter.api.Test;
 
@@ -52,7 +54,7 @@ class TestUtils {
 		}
 	}
 	
-	//@Test
+	@Test
 	public void testGetNewEntry2() {
 		
 		String currentPath = System.getProperty("user.dir");
@@ -82,7 +84,10 @@ class TestUtils {
 			e.printStackTrace();
 		}
 			
-		String exemple1 = "4, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 1582161158.5235808, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
+		String exemple1 = "4, \"Daniel\", \"ROBINSON\", 1995-08-21 00:00:00, 1582161158.5235808, unknown, \"course à pieds avec la grand-mère au marché\"";
+		String exemple2 = "15, \"Daniel\", \"HERNANDEZ\", 1962-09-25 00:00:00, 1588098882.9528382, unknown, \"course à pieds avec une copine au super maché\"";
+		String exemple3 = "19, \"Joseph\", \"JONES\", 2013-04-09 00:00:00, 1589238000.0, 13, \"vélo avec des copines à la campagne\"";
+		List<Person> pers = new ArrayList<Person>();
 		
 		Person idFR=null;
 		Person idIT=null;
@@ -91,13 +96,19 @@ class TestUtils {
 		Triplet<Person,Integer,Triplet<Person,Person,Person>> res;
 		
 		
-		for(int i =0; i<19; i++) {
+		for(int i =0; i<20; i++) {
 			res = Utils.getNewEntry2(i,idFR,idIT,idSP,brFR,brIT,brSP);
 			
 			idFR = res.getVal3().getVal1();
 			idIT = res.getVal3().getVal2();
 			idSP = res.getVal3().getVal3();
+			
+			pers.add(res.getVal1());
 		}
+		
+		assertEquals(new Person((short)0,exemple1).getPerson_id(), pers.get(4).getPerson_id());
+		assertEquals(new Person((short)0,exemple3).getPerson_id(), pers.get(19).getPerson_id());
+		assertEquals(new Person((short)1,exemple2).getPerson_id(), pers.get(15).getPerson_id());
 	}
 	
 	//@Test
@@ -108,7 +119,7 @@ class TestUtils {
         assertEquals(4, Utils.returnId(exemple1));
 	}
 	
-	@Test
+	//@Test
     public void testMain() {
         Main.main();
     }

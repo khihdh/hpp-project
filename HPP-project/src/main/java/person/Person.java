@@ -1,6 +1,7 @@
 package person;
 
 import java.sql.Timestamp;
+import java.util.Objects;
 
 public class Person {
 
@@ -54,6 +55,24 @@ public class Person {
     
     public boolean isParticipateToChain() {
 		return ParticipateToChain;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(ParticipateToChain, contaminated_by, country_id, diagnosed_ts, person_id);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Person other = (Person) obj;
+		return ParticipateToChain == other.ParticipateToChain && contaminated_by == other.contaminated_by
+				&& country_id == other.country_id && diagnosed_ts == other.diagnosed_ts && person_id == other.person_id;
 	}
     
     
