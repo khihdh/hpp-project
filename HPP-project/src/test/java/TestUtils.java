@@ -119,7 +119,7 @@ class TestUtils {
         assertEquals(4, Utils.returnId(exemple1));
 	}
 	
-	//@Test
+	@Test
     public void testMain() {
         Main.main();
     }

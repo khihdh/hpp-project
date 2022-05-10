@@ -29,7 +29,7 @@ public class TestListChainOfContamination {
 			listChainOfContamination.add(chainToAdd);
 		}
 		ListChainOfContamination sortedList = new ListChainOfContamination(listChainOfContamination.top3());
-		//System.out.println("liste : "+sortedList);
+		System.out.println("liste : "+sortedList);
 		//System.out.println("taille = "+sortedList.getSize());
 		assertEquals(3,sortedList.getSize());
 				

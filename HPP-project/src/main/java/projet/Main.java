@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -25,9 +27,9 @@ public class Main {
 				
 				int idToRead =0;
 				String currentPath = System.getProperty("user.dir");
-				String pathFR = currentPath + "\\src\\main\\resources\\France10M.csv";
-				String pathIT = currentPath + "\\src\\main\\resources\\Italy10M.csv";
-				String pathSP = currentPath + "\\src\\main\\resources\\Spain10M.csv";
+				String pathFR = currentPath + "\\src\\main\\resources\\France5000.csv";
+				String pathIT = currentPath + "\\src\\main\\resources\\Italy5000.csv";
+				String pathSP = currentPath + "\\src\\main\\resources\\Spain5000.csv";
 				File france=new File(pathFR);
 				File italy=new File(pathIT);
 				File spain=new File(pathSP);
@@ -79,6 +81,39 @@ public class Main {
 					idToRead++;
 					personne = (Person) res.getVal1();
 	                fin = (Integer) res.getVal2();
+	                
+	                inQueue.addPerson(personne); // first person must have an unkown contaminatore 
+					
+	                System.out.println(personne);
+					listTop3 = inQueue.top3();
+					System.out.println(personne);
+					List<String[]>  writer = new ArrayList<>();
+					for (int i = 0; i<2;i++) {
+						if (listTop3.get(3*i).getCountry()==0) {
+							String[] header = {"France"};
+							writer.add(header);
+						
+						}
+						if (listTop3.get(3*i).getCountry()==1) {
+							String[] header = {"Italy"};
+							writer.add(header);
+						
+						}
+						if (listTop3.get(3*i).getCountry()==2) {
+							String[] header = {"Spain"};
+							writer.add(header);
+						
+						}
+						String[] record1 = {Integer.toString(listTop3.get(1+3*i).getIndex())};
+						writer.add(record1);
+						String[] record2 = {Integer.toString(listTop3.get(2+3*i).getScore())};
+						writer.add(record2);
+					}
+					try {
+						CsvWriterSimple.main(writer);
+					} catch (IOException e) {
+						e.printStackTrace();
+					}
 					//System.out.println(personne);
 				}
 				
