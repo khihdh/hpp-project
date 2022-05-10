@@ -50,6 +50,8 @@ public class ChainOfContamination {
 	
 	public void displayChain() {
 		System.out.println("");
+		System.out.println("Chain of score : " + score);
+		System.out.println("   ||   ");
 		System.out.println("Person Id : " +listPerson.get(0).getPerson_id());
 		System.out.println("contaminated by : " +listPerson.get(0).getContaminated_by());
 		for(int i=1; i<listPerson.size(); i++) {

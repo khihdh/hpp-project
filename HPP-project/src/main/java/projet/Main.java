@@ -25,9 +25,9 @@ public class Main {
 				
 				int idToRead =0;
 				String currentPath = System.getProperty("user.dir");
-				String pathFR = currentPath + "\\src\\main\\resources\\France10M.csv";
-				String pathIT = currentPath + "\\src\\main\\resources\\Italy10M.csv";
-				String pathSP = currentPath + "\\src\\main\\resources\\Spain10M.csv";
+				String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
+				String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
+				String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
 				File france=new File(pathFR);
 				File italy=new File(pathIT);
 				File spain=new File(pathSP);
@@ -75,11 +75,22 @@ public class Main {
 					idSP = res.getVal3().getVal3();
 					
 					
-					
 					idToRead++;
 					personne = (Person) res.getVal1();
 	                fin = (Integer) res.getVal2();
-					//System.out.println(personne);
+	                
+	                System.out.println("Person_id : " + personne.getPerson_id() + " Person_ant :" + personne.getContaminated_by() + " - ts : " + personne.returnDate() );
+	                
+	                inQueue.addPerson(personne);
+	                listTop3 = inQueue.top3();
+				}
+				
+					
+				System.out.println("reading top 3");
+				
+				
+				for(int i =0; i<listTop3.size(); i++) {
+					listTop3.get(i).displayChain();
 				}
 				
 

@@ -38,12 +38,13 @@ public class ListChainOfContamination {
 	 * @return the 3 first chain of contamination of the List sort by score
 	 */
 	public ArrayList<ChainOfContamination> top3() {
+		int size = this.listChainOfContamination.size();
 		
 		this.sortListChainOfContamination();
 		ArrayList<ChainOfContamination> top3contamination = new ArrayList<ChainOfContamination>();
 		
-		for (int i=0; i<3; i++) {
-			top3contamination.add(this.listChainOfContamination.get(i));
+		for (int i=0;i<size && i<3; i++) {
+			top3contamination.add(this.listChainOfContamination.get(size -i -1));
 		}
 		
 		return top3contamination;
@@ -107,7 +108,7 @@ public class ListChainOfContamination {
 				selectedChain = this.listChainOfContamination.get(i);
 				ChainLength = selectedChain.getListPersonSize();
 				
-				if(TargetRootId == selectedChain.getListPerson().get(ChainLength).getPerson_id()) {
+				if(TargetRootId == selectedChain.getListPerson().get(ChainLength-1).getPerson_id()) {
 					selectedChain.addPerson(personToAdd);
 					this.updateListOfPerson(personToAdd);
 					return;
