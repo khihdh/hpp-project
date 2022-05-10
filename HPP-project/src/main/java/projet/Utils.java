@@ -8,9 +8,12 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.NoSuchElementException;
 import java.util.stream.Stream;
 
 import org.apache.commons.io.FileUtils;
@@ -43,17 +46,11 @@ public class Utils {
 		return res;
 	}
 	
-	public static Pair<Person,Integer> getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,String franceDataPath, String italyDataPath, String spainDataPath) {
+	public static Pair<Person,Integer> getNewEntry(int idToRead,Pair<Integer, Integer> idFR,Pair<Integer, Integer> idIT,Pair<Integer, Integer> idSP,File france, File italy, File spain) {
 		Person personToReturn = null;
 		Integer fin = 0;
 		try  
 		{  
-			File france=new File(franceDataPath);
-			File italy=new File(italyDataPath);
-			File spain=new File(spainDataPath);
-			
-			
-			
 			//if it is the first reading of the files, we open the three of them to get the ids of the contaminated people
 			if(idToRead == 0) {
 				
@@ -205,6 +202,116 @@ public class Utils {
 		}
 		
 		return new Pair(personToReturn,fin);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	////////////////////////////////////////////////////////////////////////////
+	
+	
+	
+	
+	
+	
+	public static Triplet<Person,Integer,Triplet<Person,Person,Person>> getNewEntry2(int idToRead,Person pf,Person pi,Person ps,BufferedReader france, BufferedReader italy, BufferedReader spain) {
+		Person personToReturn = null;
+		Integer fin = 0;
+		boolean finFR = false,finIT = false,finSP = false;
+		
+		//System.out.println("starting loop " + idToRead);
+		
+		//if it is the first reading of the files, we open the three of them to get the
+		//data of the 3 first person of each file to initialise the reading
+		if(idToRead == 0) {
+			
+			try {
+			String line;  
+			if((line=france.readLine())!=null)
+				pf = new Person((short)0,line);
+				//System.out.println("pf initialisation :" + pf.getPerson_id());
+			if((line=italy.readLine())!=null)  
+				pi = new Person((short)1,line);
+			//System.out.println("pi initialisation :" + pi.getPerson_id());
+			if((line=spain.readLine())!=null)  
+				ps = new Person((short)1,line);
+				//System.out.println("ps initialisation :" + ps.getPerson_id());
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		//if it is not the first read of the 3 files we read their value and return the good one
+		short countryId = -1;
+		
+		//System.out.println("id to read : " + idToRead + " in [" + pf.getPerson_id() + "," + pi.getPerson_id() + "," + ps.getPerson_id() + "]");
+		
+		if(pf != null && idToRead == pf.getPerson_id()) {
+			countryId = 0;
+			//System.out.println("person to read is in france file");
+		}else if(pi != null && idToRead == pi.getPerson_id()) {
+			countryId = 1;
+			//System.out.println("person to read is in italy file");
+		}else if(ps != null && idToRead == ps.getPerson_id() ) {
+			countryId = 2;
+			//System.out.println("person to read is in spain file");
+		}
+		
+		
+		
+		String line;  
+		
+		switch(countryId) {
+		case 0:
+			personToReturn = pf;
+			try {
+				if((line=france.readLine())!=null)
+					pf = new Person((short)0,line);
+				else{
+					pf = null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case 1:
+			personToReturn = pi;
+			try {
+				if((line=italy.readLine())!=null)
+					pi = new Person((short)0,line);
+				else {
+					pi = null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		case 2:
+			personToReturn = ps;
+			try {
+				if((line=spain.readLine())!=null)
+					ps = new Person((short)0,line);
+				else{
+					ps = null;
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			break;
+		}
+		
+		
+		if(pf== null && pi == null && ps == null) 
+			fin = 1;
+		
+		Triplet persons = new Triplet<Person, Person, Person>(pf,pi,ps);
+		return new Triplet(personToReturn,fin,persons);
 	}
 	
 	
