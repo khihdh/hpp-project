@@ -35,6 +35,11 @@ public class Person {
         ParticipateToChain = true;
     }
     
+    public Timestamp returnDate() {
+		long mille = 1000;
+		return new Timestamp(diagnosed_ts*mille);
+	}
+    
     /* Getters */
     public int getPerson_id() {
         return person_id;

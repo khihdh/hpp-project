@@ -41,9 +41,9 @@ class TestUtils {
 		File italy=new File(pathIT);
 		File spain=new File(pathSP);
 		
-		Pair<Integer, Integer> idFR = new Pair<>(0, 0);
-		Pair<Integer, Integer> idIT = new Pair<>(0, 0);
-		Pair<Integer, Integer> idSP = new Pair<>(0, 0);
+		Pair<Integer, Integer> idFR = new Pair<Integer, Integer>(0, 0);
+		Pair<Integer, Integer> idIT = new Pair<Integer, Integer>(0, 0);
+		Pair<Integer, Integer> idSP = new Pair<Integer, Integer>(0, 0);
 		
 		Pair<Person,Integer> pair;
 		
@@ -119,7 +119,7 @@ class TestUtils {
         assertEquals(4, Utils.returnId(exemple1));
 	}
 	
-	//@Test
+	@Test
     public void testMain() {
         Main.main();
     }
