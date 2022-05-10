@@ -11,9 +11,8 @@ import contamination.ListChainOfContamination;
 import person.Person;
 
 public class TestListChainOfContamination {
-	String initial = "1, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 86400, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
 	
-	ArrayList<Person> p;
+	String initial = "1, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 86400, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
 	Person testPerson = new Person ((short)0,initial);
 	
 	ListChainOfContamination listChainOfContamination = new ListChainOfContamination();
@@ -32,8 +31,11 @@ public class TestListChainOfContamination {
 		//System.out.println("liste : "+sortedList);
 		//System.out.println("taille = "+sortedList.getSize());
 		assertEquals(3,sortedList.getSize());
-				
 	}
+	
+	
+	
+	
 	
 	ListChainOfContamination SortedListChainOfContamination = new ListChainOfContamination();
 	ListChainOfContamination UnsortedListChainOfContamination = new ListChainOfContamination();
@@ -63,10 +65,45 @@ public class TestListChainOfContamination {
 
 		UnsortedListChainOfContamination.sortListChainOfContamination();
 		
-		System.out.println(UnsortedListChainOfContamination.top3());
-		System.out.println(SortedListChainOfContamination.top3());
+		//System.out.println(UnsortedListChainOfContamination.top3());
+		//System.out.println(SortedListChainOfContamination.top3());
 
 		assertEquals(SortedListChainOfContamination.top3(),UnsortedListChainOfContamination.top3());
 				
 	}
+	
+	
+	
+	
+	
+	String initialCerise = "1, "+"Cerise"+", "+"DUPOND"+", 1963-01-21 02:00:00, 1584540000, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Cerise = new Person ((short)0,initialCerise);
+
+	String initialHerve = "2, "+"Herve"+", "+"RENOIR"+", 1971-03-11 02:00:00, 1584712800, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Herve = new Person ((short)0,initialHerve);
+	
+	String initialValentina = "3, "+"Valentina"+", "+"Rossi"+", 1963-01-21 07:00:00, 1584558000, 1, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Valentina = new Person ((short)1,initialValentina);
+	
+	String initialMarco = "4, "+"Marco"+", "+"Guili"+", 1956-01-06 04:00:00, 1585324800, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Marco = new Person ((short)1,initialMarco);
+	
+	String initialStella = "5, "+"Stella"+", "+"Capelli"+", 1949-01-21 04:00:00, 1587312000, 4, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Stella = new Person ((short)1,initialStella);
+	
+	String initialRicardo = "6, "+"Ricardo"+", "+"Rodriguez"+", 1964-10-03 04:00:00, 1587052800, 4, "+"course �  pieds avec la grand-mère au marché"+"";
+	Person Ricardo = new Person ((short)1,initialRicardo);
+
+	/*@Test
+	public void testAddPersonToListChainOfContamination() {
+		listChainOfContamination.addPerson(Cerise);
+		listChainOfContamination.addPerson(Herve);
+		listChainOfContamination.addPerson(Valentina);
+		listChainOfContamination.addPerson(Marco);
+		listChainOfContamination.addPerson(Stella);
+		listChainOfContamination.addPerson(Ricardo);
+		System.out.println(listChainOfContamination.top3());
+		//assertEquals(SortedListChainOfContamination.top3(),UnsortedListChainOfContamination.top3());
+	}*/
+	
 }
