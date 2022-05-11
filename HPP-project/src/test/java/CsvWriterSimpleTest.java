@@ -6,6 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class CsvWriterSimpleTest {
 
+	/**
+	 * this test method tests all the edge cases we can encounter while converting the data to a csv file format
+	 */
     private CsvWriterSimple writer = new CsvWriterSimple();
 
     @Test
