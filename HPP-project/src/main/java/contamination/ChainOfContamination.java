@@ -10,7 +10,13 @@ import projet.Utils;
  * 
  * @author madidina
  * 
- * @description Class containing informations and the list of person of a chain of contamination 
+ * @description Class containing : 
+	 * the list of persons of a chain of contamination
+	 * the country and the ID of the original person
+	 * the index of the last person who could be contact (less than 14 days)
+	 * the score of the chain
+ * 
+ * There is as much as we need object of this class
  * 
  */
 
@@ -20,10 +26,18 @@ public class ChainOfContamination {
 	private int country;
 	private int rootId;
 	private int index;
-	protected int score;
-
 	private ArrayList<Person> listPerson;
 
+	protected int score;
+
+	/**
+	 * Class Constructor:
+	 * Create a {@link contamination.ChainOfContamination}, with a default {@link #index} & {@link #score} of 0.
+	 * 
+	 * @param country
+	 * @param rootId
+	 * @param p
+	 */
 	public ChainOfContamination(int country, int rootId, Person p) {
 		super();
 		this.country = country;
@@ -36,7 +50,12 @@ public class ChainOfContamination {
 
 	}
 	
-	// Create a new list with an old one
+	/**
+	 * Class Constructor:
+	 * Create a new {@link contamination.ChainOfContamination} based on a previous one, named parentChain.
+	 * 
+	 * @param parentChain
+	 */
 	public ChainOfContamination(ChainOfContamination parentChain) {
 		super();
 		this.country = parentChain.getCountry();
@@ -48,6 +67,11 @@ public class ChainOfContamination {
 
 	}
 	
+	/**
+	 * Function printing the {@link #score} of the {@link contamination.ChainOfContamination}, 
+	 * the {@link person.Person#person_id} and covid contact - {@link person.Person#getcontaminated_by()} - 
+	 * of each persons of the {@link #listPerson}
+	 */
 	public void displayChain() {
 		System.out.println("");
 		System.out.println("Chain of score : " + score);
@@ -63,6 +87,8 @@ public class ChainOfContamination {
 	}
 
 	/**
+	 * Function that add a {@link person.Person} to the {@link #listPerson} of this class.   
+	 * 
 	 * @param personToAdd
 	 */
 	public void addPerson(Person personToAdd) {
@@ -70,7 +96,11 @@ public class ChainOfContamination {
 	}
 	
 	/**
-	 * @param personToAdd but not obligatory to this listOfPerson
+	 * Function that update the {@link #index} of this class 
+	 * by looking at the {@link person.Person#getDiagnosed_ts()} of the last {@link person.Person} pick up 
+	 * and that we want to add to a chain (but not necessarily to this chain)
+	 *
+	 *@param personToAdd
 	 */
 	public void updateIndex(Person personToAdd) {
 		int length = listPerson.size();
@@ -83,9 +113,13 @@ public class ChainOfContamination {
 	}
 	
 	/**
-	 * @param personToAdd but not obligatory to this listOfPerson
+	 * Function updating the {@link #score} of this class 
+	 * by looking at the {@link person.Person#getDiagnosed_ts()} of the last {@link person.Person} pick up 
+	 * and that we want to add to a chain (but not necessarily to this chain) 
 	 * 
-	 * Please update the index before, in order to gain time
+	 * @param personToAdd
+	 * 
+	 * Please {@link #updateIndex(Person)} before
 	 */
 	public void updateScore(Person personToAdd) {
 		
@@ -111,7 +145,10 @@ public class ChainOfContamination {
 		this.score = newScore;
 	}
 
-	// Getters and Setters
+	/**
+	 * Getters function
+	 * @return private member
+	 */
 	
 	public int getCountry() {
 		return country;
@@ -125,23 +162,27 @@ public class ChainOfContamination {
 		return score;
 	}
 	
-	//only for ListChain Test
-	public void setScore(int newScore) {
-		this.score = newScore;
-		return;
-	}
-	
 	public int getIndex() {
 		return index;
 	}
-
+	
 	int getListPersonSize() {
 		return listPerson.size();
 	}
 	
 	ArrayList<Person> getListPerson() {
 		return listPerson;
+	}	
+	
+	/**
+	 * Setter function 
+	 * only use for the Unit Test
+	 * 
+	 * @param newScore
+	 */
+	public void setScore(int newScore) {
+		this.score = newScore;
+		return;
 	}
-
 
 }
