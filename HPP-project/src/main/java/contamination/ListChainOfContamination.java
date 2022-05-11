@@ -144,6 +144,10 @@ public class ListChainOfContamination {
 		}		
 	}
 	
+	/**
+	 * Update the Index then the Score of each chain in the list 
+	 * @param personToAdd
+	 */
 	public void updateListOfPerson(Person personToAdd) {
 		int ListLength = this.listChainOfContamination.size();
 
