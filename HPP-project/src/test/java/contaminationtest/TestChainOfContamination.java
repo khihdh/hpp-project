@@ -8,7 +8,12 @@ import org.junit.Test;
 
 import contamination.ChainOfContamination;
 import person.Person;
-
+/**
+ * 
+ * @author madidina
+ *
+ *
+ */
 public class TestChainOfContamination {
 	
 	String initial = "1, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 86400, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
