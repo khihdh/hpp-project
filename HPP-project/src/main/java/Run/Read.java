@@ -21,9 +21,9 @@ public class Read implements Runnable {
 	
 	int idToRead =0;
 	String currentPath = System.getProperty("user.dir");
-	String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
-	String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
-	String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+	String pathFR = currentPath + "\\src\\main\\resources\\France5000.csv";
+	String pathIT = currentPath + "\\src\\main\\resources\\Italy5000.csv";
+	String pathSP = currentPath + "\\src\\main\\resources\\Spain5000.csv";
 	File france=new File(pathFR);
 	File italy=new File(pathIT);
 	File spain=new File(pathSP);

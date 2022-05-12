@@ -27,9 +27,9 @@ public class Main {
 				
 				int idToRead =0;
 				String currentPath = System.getProperty("user.dir");
-				String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
-				String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
-				String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+				String pathFR = currentPath + "\\src\\main\\resources\\France5000.csv";
+				String pathIT = currentPath + "\\src\\main\\resources\\Italy5000.csv";
+				String pathSP = currentPath + "\\src\\main\\resources\\Spain5000.csv";
 				File france=new File(pathFR);
 				File italy=new File(pathIT);
 				File spain=new File(pathSP);
@@ -146,9 +146,6 @@ public class Main {
 						String[] subWriter = {header,record,score,header1,record1,score1,header2,record2,score2};
 						
 						writer.add(subWriter);
-						for (int i =0 ; i<listTop3.size();i++) {
-							listTop3.get(i).displayChain();
-						}
 				}
 				
 				try {

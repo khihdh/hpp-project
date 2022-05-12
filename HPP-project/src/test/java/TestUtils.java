@@ -112,13 +112,13 @@ class TestUtils {
 		assertEquals(new Person((short)1,exemple2).getPerson_id(), pers.get(15).getPerson_id());
 	}
 	
-	//@Test
+	/*//@Test
 	public void testReturnId() {
 		String exemple1 = "4, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 1582161158.5235808, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
         //System.out.println(exemple1);
         //System.out.println(Utils.returnId(exemple1));
         assertEquals(4, Utils.returnId(exemple1));
-	}
+	}*/
 	
 	@Test
     public void testMain() {

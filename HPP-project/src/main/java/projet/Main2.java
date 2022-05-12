@@ -18,7 +18,7 @@ public class Main2 {
 	public static void main2() {
 	BlockingQueue<Person> inQueue = new LinkedBlockingQueue<>();
 	BlockingQueue<ArrayList<ChainOfContamination>> outQueue =new  LinkedBlockingQueue<ArrayList<ChainOfContamination>>();
-	Integer max = 20;
+	Integer max = 5000;
 
 	Read read = new Read(inQueue);
 	Process process = new Process(inQueue, outQueue,max);
