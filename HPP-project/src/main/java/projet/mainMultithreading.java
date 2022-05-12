@@ -16,20 +16,23 @@ import person.Person;
 public class mainMultithreading {
 
 	public static void main2() {
+		//we create the queue where the person to treat will be stocked
 		BlockingQueue<Person> inQueue = new LinkedBlockingQueue<>();
+		//we create the queue the the top 3 will be stocked before being put in the csv
 		BlockingQueue<ArrayList<ChainOfContamination>> outQueue =new  LinkedBlockingQueue<ArrayList<ChainOfContamination>>();
+		//max corresponds to the number of person in the csv ( need to be changed accordingly)
 		Integer max = 5000;
 
+		//we create the object that the thread will need to execute
 		Read read = new Read(inQueue);
 		Process process = new Process(inQueue, outQueue,max);
 		Write write = new Write(outQueue,max);
 
+		//the pool oh threads that we will use
 		ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit
 
-//		Scanner scanners = new Scanner(System.in);
-//		int i = scanners.nextInt();
 
-		//Start timer
+		//Start the thread
 		service.execute(read);
 		service.execute(process);
 		service.execute(write);

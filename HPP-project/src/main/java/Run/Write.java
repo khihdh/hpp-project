@@ -32,6 +32,7 @@ public class Write implements Runnable {
 		//get top1_country_origin, top1_chain_root_person_id, top1_chain_score; top2_country_origin, top2_chain_root_person_id, top2_chain_score; top3_country_origin, top3_chain_root_person_id, top3_chain_score
 		//Getting the top3, take()
 		try {
+			//we set the path which leads to the csv file to change
 			String currentPath = System.getProperty("user.dir");
 			String path = currentPath + "\\src\\main\\resources\\monitor.csv";
 			 File outFile = new File(path);
@@ -50,14 +51,18 @@ public class Write implements Runnable {
 			{
 			listTop3= outQueue_.take();
 			i++;
+			//we create the different elements that we will write
 			String header ="";
 			String header1 ="";
 			String header2 ="";
+			String record ="";
+			String score ="";
 			String record1 ="";
 			String score1 ="";
 			String record2 ="";
 			String score2 ="";
 
+			//we take the value that we will display
 			if (Integer.valueOf(listTop3.get(0).getCountry()).equals(0)) {
 				header = "France";
 			}
@@ -67,8 +72,8 @@ public class Write implements Runnable {
 			if (Integer.valueOf(listTop3.get(0).getCountry()).equals(2)) {
 				header = "Spain";
 			}
-			String record = Integer.toString(listTop3.get(0).getRootId());
-			String score = Integer.toString(listTop3.get(0).getScore());
+			record = Integer.toString(listTop3.get(0).getRootId());
+			score = Integer.toString(listTop3.get(0).getScore());
 			
 			if (listTop3.size()>1) {
 			if (Integer.valueOf(listTop3.get(1).getCountry()).equals(0)) {
@@ -104,9 +109,10 @@ public class Write implements Runnable {
 			record2 = Integer.toString(listTop3.get(2).getRootId());
 			score2 = Integer.toString(listTop3.get(2).getScore());
 			}
+			//we create the final string that we will flush in the csv file
 			String subWriter = header+"  "+record+"  "+score+"  "+header1+"  "+record1+"  "+score1+"  "+header2+"  "+record2+"  "+score2+"  "+"\n";
 			
-			//writer.add(subWriter);
+			//we flush the final string in the csv file
 			br.write(subWriter.getBytes("UTF-8"));
 	        br.flush();
 		}

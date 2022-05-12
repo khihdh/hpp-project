@@ -17,6 +17,7 @@ public class Read implements Runnable {
 	 private final BlockingQueue<Person> queue;
 	
 	int idToRead =0;
+	//we put the path to the files to read
 	String currentPath = System.getProperty("user.dir");
 	String pathFR = currentPath + "\\src\\main\\resources\\France5000.csv";
 	String pathIT = currentPath + "\\src\\main\\resources\\Italy5000.csv";
@@ -40,7 +41,6 @@ public class Read implements Runnable {
 
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		try {
 			frFR = new FileReader(france);
 			frIT = new FileReader(italy); // java.io.FileReader
@@ -59,14 +59,12 @@ public class Read implements Runnable {
 		
 		Triplet<Person,Integer,Triplet<Person,Person,Person>> res;
 		
-		//Start timer
-		long startTime = System.nanoTime();
-		List<String[]>  writer = new ArrayList<>();
 		
 		System.out.println("Starting reading ...");
 		
 		//boucle  faire aprs
 		while (fin.equals(0)) {
+			//we take the value that we need to create a person
 			res = Utils.getNewEntry2(idToRead,idFR,idIT,idSP,brFR,brIT,brSP);
 			
 			idFR = res.getVal3().getVal1();
@@ -75,7 +73,9 @@ public class Read implements Runnable {
 			
 			
 			idToRead++;
+			//we create the person with the previous values
 			personne = (Person) res.getVal1();
+			//we add the person to the queue so we can process it
 			queue.add(personne);
             fin = (Integer) res.getVal2();
 	}
