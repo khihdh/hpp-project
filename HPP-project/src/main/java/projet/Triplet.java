@@ -1,5 +1,14 @@
 package projet;
 
+
+/**
+ * 
+ * a data structure containing 3 values.
+ *
+ * @param <T1>
+ * @param <T2>
+ * @param <T3>
+ */
 public class Triplet<T1, T2,T3> {
 
 	private T1 val1;

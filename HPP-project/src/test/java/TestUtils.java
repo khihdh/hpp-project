@@ -19,9 +19,17 @@ import projet.Main;
 import projet.Pair;
 import projet.Triplet;
 
+/**
+ * 
+ * This test class tests the utils functions such as ReturnId() or calculateScore() but more importantly the file parsing methods
+ *
+ */
 class TestUtils {
 
-	//@Test
+	/**
+	 * this method tests the return score returned for different values of the current date ans the contamination date
+	 */
+	@Test
 	public void testcalculateScore() {
 		assertEquals(10, Utils.calculateScore(1584540000,1584712800));
 		assertEquals(10, Utils.calculateScore(1587052800,1587312000));
@@ -29,7 +37,12 @@ class TestUtils {
 		assertEquals(0, Utils.calculateScore(1584540000,1587312000));
 	}
 	
-	//@Test
+	/**
+	 * this test verify the first file parsing method. It creates an ArrayLsit containing all
+	 * the persons in the 3 files and then compare them to exemples to check if the file is well parsed
+	 * and in chronological order
+	 */
+	@Test
 	public void testGetNewEntry() {
 		
 		String currentPath = System.getProperty("user.dir");
@@ -45,15 +58,28 @@ class TestUtils {
 		Pair<Integer, Integer> idIT = new Pair<Integer, Integer>(0, 0);
 		Pair<Integer, Integer> idSP = new Pair<Integer, Integer>(0, 0);
 		
-		Pair<Person,Integer> pair;
+		String exemple1 = "4, \"Daniel\", \"ROBINSON\", 1995-08-21 00:00:00, 1582161158.5235808, unknown, \"course à pieds avec la grand-mère au marché\"";
+		String exemple2 = "15, \"Daniel\", \"HERNANDEZ\", 1962-09-25 00:00:00, 1588098882.9528382, unknown, \"course à pieds avec une copine au super maché\"";
+		String exemple3 = "19, \"Joseph\", \"JONES\", 2013-04-09 00:00:00, 1589238000.0, 13, \"vélo avec des copines à la campagne\"";
+		List<Person> pers = new ArrayList<Person>();
 		
 		Pair<Person, Integer> test;
 		
-		for(int i =0; i<19; i++) {
+		for(int i =0; i<20; i++) {
 			test = Utils.getNewEntry(i,idFR,idIT,idSP,france,italy,spain);
+			pers.add(test.getKey());
 		}
+		
+		assertEquals(new Person((short)0,exemple1).getPerson_id(), pers.get(4).getPerson_id());
+		assertEquals(new Person((short)0,exemple3).getPerson_id(), pers.get(19).getPerson_id());
+		assertEquals(new Person((short)1,exemple2).getPerson_id(), pers.get(15).getPerson_id());
 	}
 	
+	/**
+	 * this test verify the second file parsing method. It creates an ArrayLsit containing all
+	 * the persons in the 3 files and then compare them to exemples to check if the file is well parsed
+	 * and in chronological order
+	 */
 	@Test
 	public void testGetNewEntry2() {
 		
@@ -111,17 +137,20 @@ class TestUtils {
 		assertEquals(new Person((short)1,exemple2).getPerson_id(), pers.get(15).getPerson_id());
 	}
 	
-	//@Test
+	/**
+	 * this test check if the raw data of a case returns an int which is the id of the case
+	 */
+	@Test
 	public void testReturnId() {
 		String exemple1 = "4, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 1582161158.5235808, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
         //System.out.println(exemple1);
         //System.out.println(Utils.returnId(exemple1));
         assertEquals(4, Utils.returnId(exemple1));
 	}
-	
+	/*
 	@Test
     public void testMain() {
-        Main.main();
+        //Main.main();
     }
-
+	*/
 }
