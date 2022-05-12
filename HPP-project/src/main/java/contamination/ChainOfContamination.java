@@ -8,15 +8,15 @@ import projet.Utils;
 
 /**
  * 
- * @author madidina
+ * @author Diane
  * 
  * @description Class containing : 
-	 * the list of persons of a chain of contamination
-	 * the country and the ID of the original person
-	 * the index of the last person who could be contact (less than 14 days)
-	 * the score of the chain
+	 * the list of persons of a chain of contamination,
+	 * the country and the ID of the original person,
+	 * the index of the last person who could be contact (less than 14 days),
+	 * the score of the chain.
  * 
- * There is as much as we need object of this class
+ * There is as much as we need object of this class.
  * 
  */
 
@@ -88,6 +88,7 @@ public class ChainOfContamination {
 
 	/**
 	 * Function that add a {@link person.Person} to the {@link #listPerson} of this class.   
+	 * It' used in {@link contamination.ListChainOfContamination#updateListOfPerson(Person)}
 	 * 
 	 * @param personToAdd
 	 */
@@ -99,8 +100,9 @@ public class ChainOfContamination {
 	 * Function that update the {@link #index} of this class 
 	 * by looking at the {@link person.Person#getDiagnosed_ts()} of the last {@link person.Person} pick up 
 	 * and that we want to add to a chain (but not necessarily to this chain)
-	 *
-	 *@param personToAdd
+	 * It' used in {@link contamination.ListChainOfContamination#updateListOfPerson(Person)}
+	 * 
+	 * @param personToAdd
 	 */
 	public void updateIndex(Person personToAdd) {
 		int length = listPerson.size();
@@ -114,12 +116,13 @@ public class ChainOfContamination {
 	
 	/**
 	 * Function updating the {@link #score} of this class 
-	 * by looking at the {@link person.Person#getDiagnosed_ts()} of the last {@link person.Person} pick up 
+	 * by looking at the {@link person.Person#diagnosed_ts()} of the last {@link person.Person} pick up 
 	 * and that we want to add to a chain (but not necessarily to this chain) 
+	 * It' used in {@link contamination.ListChainOfContamination#updateListOfPerson(Person)}
+	 * Please {@link #updateIndex(Person)} before
 	 * 
 	 * @param personToAdd
 	 * 
-	 * Please {@link #updateIndex(Person)} before
 	 */
 	public void updateScore(Person personToAdd) {
 		

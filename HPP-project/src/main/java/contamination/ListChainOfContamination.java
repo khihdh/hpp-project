@@ -9,9 +9,12 @@ import projet.Utils;
 
 /**
  * 
- * @author madidina
+ * @author Diane
  *
- * Keep a track of all created chain of contamination
+ * @description Class containing:
+	 * the list of {@link contamination.ChainOfContamination}.
+ * Keep a track of all created {@link contamination.ChainOfContamination} even if their score reach 0.
+ * At the end the first three {@link contamination.ChainOfContamination} will be printed.
  * 
  */
 
@@ -19,23 +22,32 @@ public class ListChainOfContamination {
 	
 	private ArrayList<ChainOfContamination> listChainOfContamination;
 
+	/**
+	 * Class constructor:
+	 * Create a {@link contamination.ListChainOfContamination}.
+	 */
 	public ListChainOfContamination() {
 		super();
 		this.listChainOfContamination = new ArrayList<ChainOfContamination>();
 	}
 	
+	/**
+	 * Class constructor:
+	 * Create a {@link contamination.ListChainOfContamination}, based on a previous one. 
+	 * This constructor is used in the {@link contaminationtest.TestListChainOfContamination}
+	 * 
+	 * @param listChainOfContamination 
+	 */
 	public ListChainOfContamination(ArrayList<ChainOfContamination> listChainOfContamination) {
 		super();
 		this.listChainOfContamination = listChainOfContamination;
 	}
 	
-	public void add(ChainOfContamination chainToAdd) {
-		this.listChainOfContamination.add(chainToAdd);
-	}
-
 	/**
+	 * Function called the {@link contamination.ListChainOfContamination#sortListChainOfContamination()}, 
+	 * then return the 3 firsts {@link contamination.ChainOfContamination} of the {@link contamination.ListChainOfContamination} sort by their {@link contamination.ChainOfContamination#score}
 	 * 
-	 * @return the 3 first chain of contamination of the List sort by score
+	 * @return the 3 firsts {@link contamination.ChainOfContamination} of the {@link contamination.ListChainOfContamination} sort by their {@link contamination.ChainOfContamination#score}
 	 */
 	public ArrayList<ChainOfContamination> top3() {
 		int size = this.listChainOfContamination.size();
@@ -50,14 +62,34 @@ public class ListChainOfContamination {
 		return top3contamination;
 	}
 	/**
-	 * 
-	 * class the chain of contamination sort by descending order score 
+	 * Function sorting {@link contamination.ListChainOfContamination} by their {@link contamination.ChainOfContamination#score}
+	 * class the chain of contamination sort by descending order score.
+	 * It's using the class {@link contamination.ListChainOfContamination.ChainOfContaminationComparatore} as comparator.
 	 */
 	public void sortListChainOfContamination() {
 		Collections.sort(this.listChainOfContamination,new ChainOfContaminationComparatore());;
 	}
 	
+	/**
+	 * 
+	 * @author Diane
+	 * 
+	 * @description Class implementing {@link java.util.Comparator<Object>}. 
+	 * This class was created to compare tow {@link contamination.ChainOfContamination#score} based on their {@link contamination.ChainOfContamination#score}
+	 *
+	 */
 	public class ChainOfContaminationComparatore implements Comparator<Object>{
+		
+		/**
+		 * Function comparing tow {@link contamination.ChainOfContamination#score} based on their {@link contamination.ChainOfContamination#score}
+		 * 
+		 * @param o1 is the {@link contamination.ChainOfContamination#score} of the first {@link contamination.ChainOfContamination}
+		 * @param o2 is the {@link contamination.ChainOfContamination#score} of the second {@link contamination.ChainOfContamination}
+		 * 
+		 * @return 0 if both {@link contamination.ChainOfContamination#score} are equal, 
+		 * 1 if the first {@link contamination.ChainOfContamination#score} is superior than the second {@link contamination.ChainOfContamination#score},
+		 * 1 if the second {@link contamination.ChainOfContamination#score} is superior than the first {@link contamination.ChainOfContamination#score}
+		 */
 		public int compare(Object o1,Object o2){  
 			ChainOfContamination c1=(ChainOfContamination)o1;  
 			ChainOfContamination c2=(ChainOfContamination)o2;  
@@ -72,14 +104,14 @@ public class ListChainOfContamination {
 	}
 	
 	/**
-	 * 
-	 * @param personToAdd : we have to find what to to with this person
-	 * 
+	 * Function finding what to do with this {@link person.Person} that we want to add to a {@link contamination.ChainOfContamination}
 	 * 4 solutions : 
-	 * 	- the person contaminated by is unknown 
-	 * 	- add at the end of a chain 
-	 * 	- creation of another chain linked to one already existing 
-	 * 	- creation of another chain because the date of contamination is to old
+	 * 	- the {@link person.Person#contaminated_by} is unknown 
+	 * 	- add at the end of a {@link contamination.ChainOfContamination} because he was contaminated by the last {@link person.Person} of the {@link contamination.ListChainOfContamination}
+	 * 	- creation of another {@link contamination.ChainOfContamination} based on the previous one because he was contaminated by a {@link person.Person} in the middle of the {@link contamination.ListChainOfContamination}
+	 * 	- creation of another {@link contamination.ChainOfContamination} because the {@link person.Person#diagnosed_ts()} is to old regards to all {@link person.Person} of {@link contamination.ListChainOfContamination}
+	 * 
+	 * @param personToAdd {@link person.Person} that we want to add to one of the {@link contamination.ChainOfContamination} 
 	 * 
 	 */
 	
@@ -145,8 +177,11 @@ public class ListChainOfContamination {
 	}
 	
 	/**
-	 * Update the Index then the Score of each chain in the list 
-	 * @param personToAdd
+	 * Update the Index then the Score of each {@link contamination.ChainOfContamination} in the {@link contamination.ListChainOfContamination#listChainOfContamination} 
+	 * using the {@link contamination.ChainOfContamination#updateIndex(Person)} and the {@link contamination.ChainOfContamination#updateScore(Person)} functions.
+	 * This function is used in {@link contamination.ListChainOfContamination#addPerson(Person)}.
+	 * 
+	 * @param personToAdd {@link person.Person} that we want to add to one of the {@link contamination.ChainOfContamination}
 	 */
 	public void updateListOfPerson(Person personToAdd) {
 		int ListLength = this.listChainOfContamination.size();
@@ -156,6 +191,19 @@ public class ListChainOfContamination {
 			this.listChainOfContamination.get(i).updateScore(personToAdd);
 		}
 	}
+	
+	/**
+	 * Function adding a {@link contamination.ChainOfContamination} to the {@link contamination.ListChainOfContamination#listChainOfContamination}
+	 * @param chainToAdd
+	 */
+	public void add(ChainOfContamination chainToAdd) {
+		this.listChainOfContamination.add(chainToAdd);
+	}
+	
+	/**
+	 * Getter
+	 * @return {@link contamination.ListChainOfContamination#listChainOfContamination.size()} 
+	 */
 	
 	public int getSize() {
 		
