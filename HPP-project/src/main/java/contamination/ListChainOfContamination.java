@@ -65,6 +65,7 @@ public class ListChainOfContamination {
 	 * Function sorting {@link contamination.ListChainOfContamination} by their {@link contamination.ChainOfContamination#score}
 	 * class the chain of contamination sort by descending order score.
 	 * It's using the class {@link contamination.ListChainOfContamination.ChainOfContaminationComparatore} as comparator.
+	 * This function is used in the {@link contamination.ListChainOfContamination#top3()}
 	 */
 	public void sortListChainOfContamination() {
 		Collections.sort(this.listChainOfContamination,new ChainOfContaminationComparatore());;
