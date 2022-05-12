@@ -29,12 +29,11 @@ public class Write implements Runnable {
 		//get top1_country_origin, top1_chain_root_person_id, top1_chain_score; top2_country_origin, top2_chain_root_person_id, top2_chain_score; top3_country_origin, top3_chain_root_person_id, top3_chain_score
 		//Getting the top3, take()
 		try {
+			Integer i =0;
+			while (!(i.equals((Integer)20)))
+			{
 			listTop3= outQueue_.take();
-		} catch (InterruptedException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		try {
+			i++;
 			String header ="";
 			String header1 ="";
 			String header2 ="";
@@ -92,6 +91,10 @@ public class Write implements Runnable {
 			String[] subWriter = {header,record,score,header1,record1,score1,header2,record2,score2};
 			
 			writer.add(subWriter);
+		}
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
 		}
 	finally {
 		try {

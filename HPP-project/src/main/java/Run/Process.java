@@ -31,13 +31,18 @@ public class Process implements Runnable {
 		@Override
 		public void run() {
 			try {
+				Integer i =0;
+				while (!(i.equals((Integer)20)))
+				{
 				System.out.println("where?");
 				onePerson = inQueue_.take();
+				i++;
 				System.out.println("where?");
 			inQueue2.addPerson(onePerson);
 			listTop3 = inQueue2.top3();
 			outQueue_.add(listTop3);
 			System.out.println("where?");
+				}
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}

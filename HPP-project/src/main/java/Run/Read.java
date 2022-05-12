@@ -79,6 +79,7 @@ public class Read implements Runnable {
 			
 			idToRead++;
 			personne = (Person) res.getVal1();
+			queue.add(personne);
             fin = (Integer) res.getVal2();
 	}
 		} catch (FileNotFoundException e) {
