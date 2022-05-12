@@ -18,10 +18,11 @@ public class Main2 {
 	public static void main2() {
 	BlockingQueue<Person> inQueue = new LinkedBlockingQueue<>();
 	BlockingQueue<ArrayList<ChainOfContamination>> outQueue =new  LinkedBlockingQueue<ArrayList<ChainOfContamination>>();
+	Integer max = 20;
 
 	Read read = new Read(inQueue);
-	Process process = new Process(inQueue, outQueue);
-	Write write = new Write(outQueue);
+	Process process = new Process(inQueue, outQueue,max);
+	Write write = new Write(outQueue,max);
 
 	ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit
 

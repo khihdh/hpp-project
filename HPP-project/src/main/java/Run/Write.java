@@ -16,9 +16,11 @@ public class Write implements Runnable {
 	static ArrayList<ChainOfContamination> listTop3 = new ArrayList();
 	List<String[]>  writer = new ArrayList<>();
 	BlockingQueue<ArrayList<ChainOfContamination>> outQueue_;
+	Integer max_;
 	
-	public Write(BlockingQueue<ArrayList<ChainOfContamination>> outQueue){
+	public Write(BlockingQueue<ArrayList<ChainOfContamination>> outQueue,Integer max){
 		outQueue_=outQueue;
+		max_ = max;
 	}
 
 	
@@ -30,7 +32,7 @@ public class Write implements Runnable {
 		//Getting the top3, take()
 		try {
 			Integer i =0;
-			while (!(i.equals((Integer)20)))
+			while (!(i.equals(max_)))
 			{
 			listTop3= outQueue_.take();
 			i++;

@@ -17,12 +17,14 @@ public class Process implements Runnable {
 	BlockingQueue<ArrayList<ChainOfContamination>> outQueue_;
 	ListChainOfContamination inQueue2 = new ListChainOfContamination();
 	Person onePerson;
+	Integer max_;
 	
 	
 	
-	public Process(BlockingQueue<Person> inQueue, BlockingQueue<ArrayList<ChainOfContamination>> outQueue){
+	public Process(BlockingQueue<Person> inQueue, BlockingQueue<ArrayList<ChainOfContamination>> outQueue,Integer max){
 		inQueue_=inQueue;
 		outQueue_=outQueue;
+		max_=max;
 	}
 	
 	/**
@@ -32,7 +34,7 @@ public class Process implements Runnable {
 		public void run() {
 			try {
 				Integer i =0;
-				while (!(i.equals((Integer)20)))
+				while (!(i.equals(max_)))
 				{
 				System.out.println("where?");
 				onePerson = inQueue_.take();
