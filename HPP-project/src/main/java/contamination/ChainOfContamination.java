@@ -10,7 +10,7 @@ import projet.Utils;
  * 
  * @author Diane
  * 
- * @description Class containing : 
+ * Class containing : 
 	 * the list of persons of a chain of contamination,
 	 * the country and the ID of the original person,
 	 * the index of the last person who could be contact (less than 14 days),
@@ -32,7 +32,7 @@ public class ChainOfContamination {
 
 	/**
 	 * Class Constructor:
-	 * Create a {@link contamination.ChainOfContamination}, with a default {@link #index} & {@link #score} of 0.
+	 * Create a {@link contamination.ChainOfContamination}, with a default {@link #index} and {@link #score} of 0.
 	 * 
 	 * @param country
 	 * @param rootId
@@ -69,7 +69,7 @@ public class ChainOfContamination {
 	
 	/**
 	 * Function printing the {@link #score} of the {@link contamination.ChainOfContamination}, 
-	 * the {@link person.Person#person_id} and covid contact - {@link person.Person#getcontaminated_by()} - 
+	 * the {@link person.Person#person_id} and covid contact - {@link person.Person#getContaminated_by()} - 
 	 * of each persons of the {@link #listPerson}
 	 */
 	public void displayChain() {
@@ -116,7 +116,7 @@ public class ChainOfContamination {
 	
 	/**
 	 * Function updating the {@link #score} of this class 
-	 * by looking at the {@link person.Person#diagnosed_ts()} of the last {@link person.Person} pick up 
+	 * by looking at the {@link person.Person#diagnosed_ts} of the last {@link person.Person} pick up 
 	 * and that we want to add to a chain (but not necessarily to this chain) 
 	 * It' used in {@link contamination.ListChainOfContamination#updateListOfPerson(Person)}
 	 * Please {@link #updateIndex(Person)} before

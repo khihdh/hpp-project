@@ -11,7 +11,7 @@ import projet.Utils;
  * 
  * @author Diane
  *
- * @description Class containing:
+ * Class containing:
 	 * the list of {@link contamination.ChainOfContamination}.
  * Keep a track of all created {@link contamination.ChainOfContamination} even if their score reach 0.
  * At the end the first three {@link contamination.ChainOfContamination} will be printed.
@@ -34,7 +34,7 @@ public class ListChainOfContamination {
 	/**
 	 * Class constructor:
 	 * Create a {@link contamination.ListChainOfContamination}, based on a previous one. 
-	 * This constructor is used in the {@link contaminationtest.TestListChainOfContamination}
+	 * This constructor is used in the {@link contaminationTest.TestListChainOfContamination}
 	 * 
 	 * @param listChainOfContamination 
 	 */
@@ -75,7 +75,7 @@ public class ListChainOfContamination {
 	 * 
 	 * @author Diane
 	 * 
-	 * @description Class implementing {@link java.util.Comparator<Object>}. 
+	 * Class implementing {@link java.util.Comparator<Object>}. 
 	 * This class was created to compare tow {@link contamination.ChainOfContamination#score} based on their {@link contamination.ChainOfContamination#score}
 	 *
 	 */
@@ -110,7 +110,7 @@ public class ListChainOfContamination {
 	 * 	- the {@link person.Person#contaminated_by} is unknown 
 	 * 	- add at the end of a {@link contamination.ChainOfContamination} because he was contaminated by the last {@link person.Person} of the {@link contamination.ListChainOfContamination}
 	 * 	- creation of another {@link contamination.ChainOfContamination} based on the previous one because he was contaminated by a {@link person.Person} in the middle of the {@link contamination.ListChainOfContamination}
-	 * 	- creation of another {@link contamination.ChainOfContamination} because the {@link person.Person#diagnosed_ts()} is to old regards to all {@link person.Person} of {@link contamination.ListChainOfContamination}
+	 * 	- creation of another {@link contamination.ChainOfContamination} because the {@link person.Person#diagnosed_ts} is to old regards to all {@link person.Person} of {@link contamination.ListChainOfContamination}
 	 * 
 	 * @param personToAdd {@link person.Person} that we want to add to one of the {@link contamination.ChainOfContamination} 
 	 * 
@@ -203,7 +203,7 @@ public class ListChainOfContamination {
 	
 	/**
 	 * Getter
-	 * @return {@link contamination.ListChainOfContamination#listChainOfContamination.size()} 
+	 * @return {@link contamination.ListChainOfContamination#listChainOfContamination} 
 	 */
 	
 	public int getSize() {

@@ -83,15 +83,13 @@ public class Main {
 	                
 	                inQueue.addPerson(personne);
 	                listTop3 = inQueue.top3();
+	                
+	                for(int i =0; i<listTop3.size(); i++) {
+						listTop3.get(i).displayChain();
+					}
 				}
 				
-					
-				System.out.println("reading top 3");
 				
-				
-				for(int i =0; i<listTop3.size(); i++) {
-					listTop3.get(i).displayChain();
-				}
 				
 
 				//ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit

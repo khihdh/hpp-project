@@ -1,4 +1,4 @@
-package Person;
+package personTest;
 
 
 import static org.junit.Assert.assertEquals;
@@ -10,6 +10,11 @@ import org.junit.Test;
 import person.Person;
 import projet.Utils;
 
+/**
+ * 
+ * this class tests the creation of Person objects from a String and check if the values on the line are parsed correctly
+ *
+ */
 public class TestsPerson {
 	
 	@Test

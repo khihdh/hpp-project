@@ -1,4 +1,4 @@
-package contaminationtest;
+package contaminationTest;
 
 import static org.junit.Assert.assertEquals;
 
@@ -12,9 +12,9 @@ import person.Person;
  * 
  * @author Diane
  *
- * @description Class:
+ * 
  * Creation of an initial string containing all informations as in a document 
- * Creation of a {@link contamination.Person} with the previous string.
+ * Creation of a {@link person.Person} with the previous string.
  * We initialize a {@link contamination.ChainOfContamination}
  */
 public class TestChainOfContamination {
@@ -28,7 +28,7 @@ public class TestChainOfContamination {
 	/**
 	 * Test of the {@link contamination.ChainOfContamination#addPerson(Person)}, {@link contamination.ChainOfContamination#updateIndex(Person)} and {@link contamination.ChainOfContamination#updateScore(Person)} functions.
 	 * It create a new {@link contamination.ChainOfContamination} and add it some information. 
-	 * Then it asserts that the number of {@link contamination.Person} in the {@link contamination.ChainOfContamination.listPerson} is added by 1, that the {@link contamination.ChainOfContamination.index} and the {@link contamination.ChainOfContamination.score}is update
+	 * Then it asserts that the number of {@link person.Person} in the {@link contamination.ChainOfContamination#listPerson} is added by 1, that the {@link contamination.ChainOfContamination#index} and the {@link contamination.ChainOfContamination#score}is update
 	 *
 	 */
 	@Test
