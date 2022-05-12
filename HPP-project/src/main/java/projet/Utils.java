@@ -240,7 +240,7 @@ public class Utils {
 				pi = new Person((short)1,line);
 			//System.out.println("pi initialisation :" + pi.getPerson_id());
 			if((line=spain.readLine())!=null)  
-				ps = new Person((short)1,line);
+				ps = new Person((short)2,line);
 				//System.out.println("ps initialisation :" + ps.getPerson_id());
 			}catch(IOException e) {
 				e.printStackTrace();
@@ -284,7 +284,7 @@ public class Utils {
 			personToReturn = pi;
 			try {
 				if((line=italy.readLine())!=null)
-					pi = new Person((short)0,line);
+					pi = new Person((short)1,line);
 				else {
 					pi = null;
 				}
@@ -296,7 +296,7 @@ public class Utils {
 			personToReturn = ps;
 			try {
 				if((line=spain.readLine())!=null)
-					ps = new Person((short)0,line);
+					ps = new Person((short)2,line);
 				else{
 					ps = null;
 				}

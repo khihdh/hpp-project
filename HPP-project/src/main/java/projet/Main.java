@@ -106,11 +106,10 @@ public class Main {
 						if (Integer.valueOf(listTop3.get(0).getCountry()).equals(2)) {
 							header = "Spain";
 						}
-						String record = Integer.toString(listTop3.get(0).getIndex());
+						String record = Integer.toString(listTop3.get(0).getRootId());
 						String score = Integer.toString(listTop3.get(0).getScore());
 						
 						if (listTop3.size()>1) {
-							System.out.println(idToRead);
 						if (Integer.valueOf(listTop3.get(1).getCountry()).equals(0)) {
 							header1 = "France";
 						
@@ -123,7 +122,7 @@ public class Main {
 							header1 = "Spain";
 						
 						}
-						record1 = Integer.toString(listTop3.get(1).getIndex());
+						record1 = Integer.toString(listTop3.get(1).getRootId());
 						score1 = Integer.toString(listTop3.get(1).getScore());
 						}
 						
@@ -141,15 +140,20 @@ public class Main {
 							header2 = "Spain";
 						
 						}
-						record2 = Integer.toString(listTop3.get(2).getIndex());
+						record2 = Integer.toString(listTop3.get(2).getRootId());
 						score2 = Integer.toString(listTop3.get(2).getScore());
 						}
 						String[] subWriter = {header,record,score,header1,record1,score1,header2,record2,score2};
 						
 						writer.add(subWriter);
+						for (int i =0 ; i<listTop3.size();i++) {
+							listTop3.get(i).displayChain();
+						}
 				}
 				
 				try {
+				
+					
 					CsvWriterSimple.main(writer);
 				} catch (IOException e) {
 					e.printStackTrace();

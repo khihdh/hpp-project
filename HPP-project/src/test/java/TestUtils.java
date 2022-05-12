@@ -120,14 +120,21 @@ class TestUtils {
         assertEquals(4, Utils.returnId(exemple1));
 	}
 	
-	/*@Test
+	@Test
     public void testMain() {
+		long startTime = System.nanoTime();
         Main.main();
-    }*/
+    	//Print execution time
+    	System.out.println("main : ");
+    	System.out.println( System.nanoTime()-startTime);
+    }
 	
 	@Test
     public void testMain2() {
+		long startTime = System.nanoTime();
         Main2.main2();
+        System.out.println("main 2 : ");
+        System.out.println( System.nanoTime()-startTime);
     }
 
 }

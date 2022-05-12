@@ -30,16 +30,12 @@ public class Main2 {
 //	int i = scanners.nextInt();
 
 	//Start timer
-	long startTime = System.nanoTime();
 	service.execute(read);
 	service.execute(process);
 	service.execute(write);
 
 	//Wait for the threads to end
 	shutdownAndAwaitTermination(service);
-
-	//Print execution time
-	System.out.println(System.nanoTime()-startTime);
 }
 	
 	public static void shutdownAndAwaitTermination(ExecutorService pool) {

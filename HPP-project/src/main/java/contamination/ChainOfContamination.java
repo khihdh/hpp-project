@@ -59,6 +59,7 @@ public class ChainOfContamination {
 			System.out.println("   ||   ");
 			System.out.println("Person Id : " +listPerson.get(i).getPerson_id());
 			System.out.println("contaminated by : " +listPerson.get(i).getContaminated_by());
+			System.out.println("country : " + country);
 		}
 	}
 

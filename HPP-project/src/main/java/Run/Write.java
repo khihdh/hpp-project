@@ -53,7 +53,7 @@ public class Write implements Runnable {
 			if (Integer.valueOf(listTop3.get(0).getCountry()).equals(2)) {
 				header = "Spain";
 			}
-			String record = Integer.toString(listTop3.get(0).getIndex());
+			String record = Integer.toString(listTop3.get(0).getRootId());
 			String score = Integer.toString(listTop3.get(0).getScore());
 			
 			if (listTop3.size()>1) {
@@ -69,7 +69,7 @@ public class Write implements Runnable {
 				header1 = "Spain";
 			
 			}
-			record1 = Integer.toString(listTop3.get(1).getIndex());
+			record1 = Integer.toString(listTop3.get(1).getRootId());
 			score1 = Integer.toString(listTop3.get(1).getScore());
 			}
 			
@@ -87,7 +87,7 @@ public class Write implements Runnable {
 				header2 = "Spain";
 			
 			}
-			record2 = Integer.toString(listTop3.get(2).getIndex());
+			record2 = Integer.toString(listTop3.get(2).getRootId());
 			score2 = Integer.toString(listTop3.get(2).getScore());
 			}
 			String[] subWriter = {header,record,score,header1,record1,score1,header2,record2,score2};
