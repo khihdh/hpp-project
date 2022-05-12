@@ -10,7 +10,7 @@ import projet.Utils;
  * 
  * @author Diane
  * 
- * @description Class containing : 
+ * Class containing : 
 	 * the list of persons of a chain of contamination,
 	 * the country and the ID of the original person,
 	 * the index of the last person who could be contact (less than 14 days),

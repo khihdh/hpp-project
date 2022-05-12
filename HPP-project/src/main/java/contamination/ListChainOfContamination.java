@@ -11,7 +11,7 @@ import projet.Utils;
  * 
  * @author Diane
  *
- * @description Class containing:
+ * Class containing:
 	 * the list of {@link contamination.ChainOfContamination}.
  * Keep a track of all created {@link contamination.ChainOfContamination} even if their score reach 0.
  * At the end the first three {@link contamination.ChainOfContamination} will be printed.

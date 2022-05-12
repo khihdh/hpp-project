@@ -12,7 +12,7 @@ import person.Person;
  * 
  * @author Diane
  *
- * @description Class:
+ * Class:
  * Creation of an initial string containing all informations as in a document 
  * Creation of a {@link contamination.Person} with the previous string.
  * We initialize a {@link contamination.ChainOfContamination}
