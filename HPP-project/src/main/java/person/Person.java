@@ -3,37 +3,54 @@ package person;
 import java.sql.Timestamp;
 import java.util.Objects;
 
+/**
+ * 
+ * Class containing :
+	 * the {@link person_id} is the id of the person.
+	 * the {@link diagnosed_ts} is the date of contamination.
+	 * the {@link contaminated_by} is the {@link person_id} of the person who contaminate him/here. It is set to -1 if it is unknown.
+	 * the {@link country_id} is the id of his/here country. It's 0 for France, 1 for Italy and 2 for Spane.
+	 * the {@link ParticipateToChain} is true if the person participate to a {@link contamination.ChainOfContamination} or false if the person does not participate.
+	 * A {@link person.Person} stay in a {@link contamination.ChainOfContamination} even if his/here {@link diagnosed_ts} is too hold 
+ *
+ * This class permit to stock and have access only to the wanted informations of a person.
+ */
+
 public class Person {
 
 	private  int person_id;
-	
-	//on ne met pas le pr�nom car jug� inutile
-    //private final String person;
     private  int diagnosed_ts;
-    
-    // -1 if it is unknown 
     private int contaminated_by;
-    
-    //france 0 italie 1 espagne 2
     private short country_id;
     private boolean ParticipateToChain;
-    //person stay in a chain even if his diagnosed_ts is too hold
     
+    /**
+     * Class Constructor :
+     * Create a {@link person.Person}, with a default {@link ParticipateToChain} set to true.
+     * The other objects are initialized with the informations giving in the documents 
+     * @param country , {@link country_id} set manually in function of the upload fill
+     * @param initial , String containing all informations on the person
+     */
     public Person(short country,String initial) {
     	
     	String[] split = null;
-    	
     	split = initial.replaceAll("\"","").replaceAll(" ", "").split(",");
+    	
     	//System.out.println(split[0]);
     	//System.out.println(split[4]);
     	//System.out.println(split[5]);
+    	
     	person_id = Integer.parseInt(split[0]);
     	diagnosed_ts = (int)(Double.parseDouble(split[4]));
-    	//diagnosed_ts = new Timestamp((long)(Double.parseDouble(split[4])*1000.0));
         contaminated_by = split[5].equals("unknown") ? -1 : Integer.parseInt(split[5]);
         country_id = country;
         ParticipateToChain = true;
     }
+    
+    /**
+     * Function calculating the {@link diagnosed_ts} in comprehensible date 
+     * @return {@link java.sql.Timestamp.Timestamp(long time)} comprehensible by human 
+     */
     
     public Timestamp returnDate() {
 		long mille = 1000;
