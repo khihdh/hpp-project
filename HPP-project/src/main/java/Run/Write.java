@@ -6,15 +6,12 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
-import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.BlockingQueue;
 
 import contamination.ChainOfContamination;
-import person.Person;
-import projet.CsvWriterSimple;
 
 public class Write implements Runnable {
 	static ArrayList<ChainOfContamination> listTop3 = new ArrayList();
@@ -127,12 +124,6 @@ public class Write implements Runnable {
 			e.printStackTrace();
 		}
 	finally {
-		/*try {
-			//CsvWriterSimple.main(writer);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
 	}
 		}
 }

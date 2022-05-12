@@ -16,6 +16,7 @@ import person.Person;
 import static org.junit.Assert.assertEquals;
 
 import projet.Utils;
+import projet.mainMultithreading;
 import projet.Main;
 import projet.Pair;
 import projet.Triplet;
@@ -149,9 +150,18 @@ class TestUtils {
         assertEquals(4, Utils.returnId(exemple1));
 	}
 	
-	@Test
+	/*@Test
     public void testMain() {
         Main.main();
+    }*/
+	
+	@Test
+    public void testMain2() {
+		long startTime = System.nanoTime();
+        mainMultithreading.main2();
+        System.out.println("main 2 : ");
+        System.out.println( System.nanoTime()-startTime);
     }
+
 	
 }

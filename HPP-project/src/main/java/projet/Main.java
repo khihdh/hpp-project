@@ -79,31 +79,13 @@ public class Main {
 					personne = (Person) res.getVal1();
 	                fin = (Integer) res.getVal2();
 	                
-	                System.out.println("Person_id : " + personne.getPerson_id() + " Person_ant :" + personne.getContaminated_by() + " - ts : " + personne.returnDate() );
+	                //System.out.println("Person_id : " + personne.getPerson_id() + " Person_ant :" + personne.getContaminated_by() + " - ts : " + personne.returnDate() );
 	                
 	                inQueue.addPerson(personne);
 	                listTop3 = inQueue.top3();
 	                
-	                for(int i =0; i<listTop3.size(); i++) {
-						listTop3.get(i).displayChain();
-					}
 				}
 				
-				
-				
-
-				//ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit
-
-//				Scanner scanners = new Scanner(System.in);
-//				int i = scanners.nextInt();
-
-				
-				//service.execute(reader);
-				//service.execute(processing);
-				//service.execute(writer);
-
-				//Wait for the threads to end
-				//ThreadUtils.shutdownAndAwaitTermination(service);
 
 				//Print execution time
 				System.out.println("Reading dataSet and creating persons : " +(float)(System.nanoTime()-startTime)/1000000000 + "seconds");
