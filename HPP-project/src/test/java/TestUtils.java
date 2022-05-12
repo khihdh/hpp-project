@@ -16,6 +16,7 @@ import static org.junit.Assert.assertEquals;
 
 import projet.Utils;
 import projet.Main;
+import projet.Main2;
 import projet.Pair;
 import projet.Triplet;
 
@@ -33,9 +34,9 @@ class TestUtils {
 	public void testGetNewEntry() {
 		
 		String currentPath = System.getProperty("user.dir");
-		String pathFR = currentPath + "\\src\\main\\resources\\France.csv";
-		String pathIT = currentPath + "\\src\\main\\resources\\Italy.csv";
-		String pathSP = currentPath + "\\src\\main\\resources\\Spain.csv";
+		String pathFR = currentPath + "\\src\\main\\resources\\France1M.csv";
+		String pathIT = currentPath + "\\src\\main\\resources\\Italy1M.csv";
+		String pathSP = currentPath + "\\src\\main\\resources\\Spain1M.csv";
 		
 		File france=new File(pathFR);
 		File italy=new File(pathIT);
@@ -122,6 +123,11 @@ class TestUtils {
 	@Test
     public void testMain() {
         Main.main();
+    }
+	
+	@Test
+    public void testMain2() {
+        Main2.main2();
     }
 
 }

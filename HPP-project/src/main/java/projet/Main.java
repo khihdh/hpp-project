@@ -4,7 +4,9 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Vector;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.ExecutorService;
@@ -63,6 +65,7 @@ public class Main {
 				
 				//Start timer
 				long startTime = System.nanoTime();
+				List<String[]>  writer = new ArrayList<>();
 				
 				System.out.println("Starting reading ...");
 				
@@ -79,33 +82,88 @@ public class Main {
 					personne = (Person) res.getVal1();
 	                fin = (Integer) res.getVal2();
 	                
-	                System.out.println("Person_id : " + personne.getPerson_id() + " Person_ant :" + personne.getContaminated_by() + " - ts : " + personne.returnDate() );
+	                //System.out.println("Person_id : " + personne.getPerson_id() + " Person_ant :" + personne.getContaminated_by() + " - ts : " + personne.returnDate() );
 	                
 	                inQueue.addPerson(personne);
+	                
+	                
 	                listTop3 = inQueue.top3();
+	                
+						String header ="";
+						String header1 ="";
+						String header2 ="";
+						String record1 ="";
+						String score1 ="";
+						String record2 ="";
+						String score2 ="";
+
+						if (Integer.valueOf(listTop3.get(0).getCountry()).equals(0)) {
+							header = "France";
+						}
+						if (Integer.valueOf(listTop3.get(0).getCountry()).equals(1)) {
+							header = "Italy";
+						}
+						if (Integer.valueOf(listTop3.get(0).getCountry()).equals(2)) {
+							header = "Spain";
+						}
+						String record = Integer.toString(listTop3.get(0).getIndex());
+						String score = Integer.toString(listTop3.get(0).getScore());
+						
+						if (listTop3.size()>1) {
+							System.out.println(idToRead);
+						if (Integer.valueOf(listTop3.get(1).getCountry()).equals(0)) {
+							header1 = "France";
+						
+						}
+						if (Integer.valueOf(listTop3.get(1).getCountry()).equals(1)) {
+							header1 = "Italy";
+						
+						}
+						if (Integer.valueOf(listTop3.get(1).getCountry()).equals(2)) {
+							header1 = "Spain";
+						
+						}
+						record1 = Integer.toString(listTop3.get(1).getIndex());
+						score1 = Integer.toString(listTop3.get(1).getScore());
+						}
+						
+						
+						if (listTop3.size()>2) {
+						if (Integer.valueOf(listTop3.get(2).getCountry()).equals(0)) {
+							header2 = "France";
+						
+						}
+						if (Integer.valueOf(listTop3.get(2).getCountry()).equals(1)) {
+							header2= "Italy";
+						
+						}
+						if (Integer.valueOf(listTop3.get(2).getCountry()).equals(2)) {
+							header2 = "Spain";
+						
+						}
+						record2 = Integer.toString(listTop3.get(2).getIndex());
+						score2 = Integer.toString(listTop3.get(2).getScore());
+						}
+						String[] subWriter = {header,record,score,header1,record1,score1,header2,record2,score2};
+						
+						writer.add(subWriter);
 				}
+				
+				try {
+					CsvWriterSimple.main(writer);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+
 				
 					
 				System.out.println("reading top 3");
 				
 				
-				for(int i =0; i<listTop3.size(); i++) {
+				/*for(int i =0; i<listTop3.size(); i++) {
 					listTop3.get(i).displayChain();
-				}
+				}*/
 				
-
-				//ExecutorService service = Executors.newFixedThreadPool(5); //5 threads is the limit
-
-//				Scanner scanners = new Scanner(System.in);
-//				int i = scanners.nextInt();
-
-				
-				//service.execute(reader);
-				//service.execute(processing);
-				//service.execute(writer);
-
-				//Wait for the threads to end
-				//ThreadUtils.shutdownAndAwaitTermination(service);
 
 				//Print execution time
 				System.out.println("Reading dataSet and creating persons : " +(float)(System.nanoTime()-startTime)/1000000000 + "seconds");
