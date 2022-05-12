@@ -49,7 +49,7 @@ public class Person {
     
     /**
      * Function calculating the {@link diagnosed_ts} in comprehensible date 
-     * @return {@link java.sql.Timestamp.Timestamp(long time)} comprehensible by human 
+     * @return {@link java.sql.Timestamp#Timestamp(long time)} comprehensible by human 
      */
     
     public Timestamp returnDate() {

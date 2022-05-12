@@ -26,7 +26,7 @@ import projet.Triplet;
  * This test class tests the utils functions such as ReturnId() or calculateScore() but more importantly the file parsing methods
  *
  */
-class TestUtils {
+public class TestUtils {
 
 	/**
 	 * this method tests the return score returned for different values of the current date ans the contamination date
