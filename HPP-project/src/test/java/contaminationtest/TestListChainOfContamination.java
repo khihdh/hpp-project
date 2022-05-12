@@ -10,8 +10,17 @@ import contamination.ChainOfContamination;
 import contamination.ListChainOfContamination;
 import person.Person;
 
-
-
+/**
+ * 
+ * @author Diane
+ *
+ * @description Class 
+ * Creation of an initial string containing all informations as in a document 
+ * Creation of a {@link contamination.Person} with the previous string.
+ * 
+ * Creation of a {@link contamination.listChainOfContamination} with the previous {@link contamination.Person} and tow new other.
+ * 
+ */
 public class TestListChainOfContamination {
 	
 	String initial = "1, "+"Daniel"+", "+"ROBINSON"+", 1995-08-21 00:00:00, 86400, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
@@ -19,6 +28,9 @@ public class TestListChainOfContamination {
 	
 	ListChainOfContamination listChainOfContamination = new ListChainOfContamination();
 
+	/**
+	 * Function testing the {@link contamination.listChainOfContamination#top3()} by verifying that the size of the final list is 3. 
+	 */
 	@Test
 	public void testTop3ListChainOfContamination() {
 				
@@ -42,6 +54,10 @@ public class TestListChainOfContamination {
 	ListChainOfContamination SortedListChainOfContamination = new ListChainOfContamination();
 	ListChainOfContamination UnsortedListChainOfContamination = new ListChainOfContamination();
 	
+	/**
+	 * Function testing the {@link contamination.listChainOfContamination#sortListChainOfContamination()} by creating town {@link contamination.listChainOfContamination} of three {@link contamination.ChainOfContamination}.
+	 * One is sorted manually and the other one is sorted by the function {@link contamination.listChainOfContamination#sortListChainOfContamination()}. The aim is to verify if the both are equal.
+	 */
 	@Test
 	public void testSortListChainOfContamination() {
 
@@ -74,10 +90,7 @@ public class TestListChainOfContamination {
 				
 	}
 	
-	
-	
-	
-	
+
 	String initialCerise = "1, "+"Cerise"+", "+"DUPOND"+", 1963-01-21 02:00:00, 1584540000, unknown, "+"course �  pieds avec la grand-mère au marché"+"";
 	Person Cerise = new Person ((short)0,initialCerise);
 
